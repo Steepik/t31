@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" class="ui button blue" value="Поиск">
+                        <input type="submit" class="ui silver button" value="Поиск">
                     </form>
                     <hr/>
                     @if($list)

@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3 login-form">
            <div class="company-name">
-               <img src="{{ asset('/img/login-logo.png')  }}" title="Торгшина - официальный сайт" class="login-logo" alt="Торгшина"/>
-               <h2 class="l-red">Торг</h2>
-               <h2 class="l-blue">Шина</h2>
+               <img src="{{ asset('/img/hankook-logo.png')  }}" title="Каретный Двор - официальный сайт" class="login-logo" alt="Торгшина"/>
+               <h2 class="l-red">Каретный</h2>
+               <h2 class="l-blue">Двор</h2>
            </div>
-            <h1 class="login-desc">Оптовые продажи</h1>
+            <h1 class="login-desc">Автоцентр</h1>
             <div class="panel panel-default">
                 <div class="panel-heading">Авторизация</div>
 
@@ -23,7 +23,7 @@
                         @endif
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <div class="col-md-12">
-                                <input id="email" type="email" placeholder="E-mail" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="phone" type="text" placeholder="Номер телефона" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
                             </div>
                         </div>
 
@@ -35,7 +35,7 @@
 
                         <div class="form-group">
                             <div class="col-md-12">
-                                <button type="submit" class="ui blue button login-button" style="width: 100%">Войти</button>
+                                <button type="submit" class="ui silver button login-button" style="width: 100%">Войти</button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -52,14 +52,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <a href="{{ route('register') }}">
-                        <button class="ui inverted red basic button" style="width: 100%">Регистрация</button>
+                        <button class="ui silver basic button" style="width: 100%">Регистрация</button>
                     </a>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <a href="{{ route('password.request') }}">
-                        <button class="ui inverted red basic button" style="width: 100%">Забыли пароль?</button>
+                        <button class="ui silver basic button" style="width: 100%">Забыли пароль?</button>
                     </a>
                 </div>
             </div>

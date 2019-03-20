@@ -24,7 +24,7 @@ class ProfileInfoRequest extends FormRequest
     public function rules()
     {
         return [
-            'inn' => 'required|min:10|max:12',
+            'inn' => 'sometimes|required|min:10|max:12',
         ];
     }
 

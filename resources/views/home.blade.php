@@ -6,13 +6,13 @@
         <div class="col-lg-12 col-md-12 col-sm-8 col-xs-9 bhoechie-tab-container">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
                 <div class="list-group">
-                    <a href="#" class="list-group-item active text-center">
+                    <a href="#" class="silver-gradient list-group-item active text-center">
                         <h4 class="glyphicon glyphicon-own-icon tire"></h4><br/>Поиск шин по типоразмеру
                     </a>
-                    <a href="#" class="list-group-item text-center">
+                    <a href="#" class="silver-gradient list-group-item text-center">
                         <h4 class="glyphicon glyphicon-own-icon wheels"></h4><br/>Поиск дисков по типоразмеру
                     </a>
-                    <a href="#" class="list-group-item text-center">
+                    <a href="#" class="silver-gradient list-group-item text-center">
                         <h4 class="glyphicon glyphicon-own-icon car"></h4><br/>Поиск шин и дисков по автомобилю
                     </a>
                 </div>
@@ -22,8 +22,6 @@
                 <div class="bhoechie-tab-content active">
                     <div class="ui top attached tabular menu">
                         <a class="item active" data-tab="first">Легковые шины</a>
-                        <a class="item" data-tab="second">Грузовые шины</a>
-                        <a class="item" data-tab="third">Спецтехника</a>
                     </div>
                     <div class="ui bottom attached tab segment active" data-tab="first">
                         <div class="ui form">
@@ -70,7 +68,7 @@
                                         <input type="text" name="tcae">
                                     </div>
                                 </div>
-                                <button class="ui blue button">Выполнить подбор</button>
+                                <button class="ui silver button">Выполнить подбор</button>
                             </form>
                         </div>
                     </div>
@@ -130,7 +128,7 @@
                                         <input type="text" name="tcae">
                                     </div>
                                 </div>
-                                <button class="ui blue button">Выполнить подбор</button>
+                                <button class="ui silver button">Выполнить подбор</button>
                             </form>
                         </div>
                     </div>
@@ -175,7 +173,7 @@
                                         <input type="text" name="tcae">
                                     </div>
                                 </div>
-                                <button class="ui blue button">Выполнить подбор</button>
+                                <button class="ui silver button">Выполнить подбор</button>
                             </form>
                         </div>
                     </div>
@@ -236,7 +234,7 @@
                                     <input type="text" name="tcae" placeholder="CAE">
                                 </div>
                             </div>
-                            <button class="ui blue button">Выполнить подбор</button>
+                            <button class="ui silver button">Выполнить подбор</button>
                         </form>
                     </div>
                 </div>
@@ -277,7 +275,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel silver panel-default">
                 <div class="panel-body">
                     <h2>Лучшие предложения сейчас</h2>
                     @if(!$tires->isEmpty())

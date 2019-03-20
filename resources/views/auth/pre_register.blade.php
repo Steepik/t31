@@ -6,7 +6,7 @@
             <div class="panel-heading">Регистрация</div>
         <div class="row">
             <div class="col-md-6 pre-register">
-                <a href="">
+                <a href="/register">
                     <div class="pre-register-card my-2 mx-auto p-relative bg-white shadow-1 blue-hover">
                         <img src="{{ asset('img/opt.png') }}" alt="Man with backpack"
                          class="d-block w-full">
@@ -29,7 +29,7 @@
                 </a>
             </div>
             <div class="col-md-6 pre-register">
-                <a href="">
+                <a href="{{ url('/register?who=wholesaler') }}">
                     <div class="pre-register-card my-2 mx-auto p-relative bg-white shadow-1 blue-hover">
                         <img src="{{ asset('img/roz.jpg') }}" alt="Man with backpack"
                              class="d-block w-full">

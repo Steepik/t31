@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('pre-register', 'Auth\RegisterController@index')->name('pre-register');
+Route::middleware('guest')->get('pre-register', 'Auth\RegisterController@index')->name('pre-register');
 Route::get('/order-list', 'HomeController@orderList')->name('order-list');
 Route::get('/tires', 'TireController@index')->name('tires');
 Route::get('/wheels', 'WheelController@index')->name('wheels');
@@ -43,7 +43,7 @@ Route::get('/{url}', function ($url) {
 })->where('url', '(add_to_cart|prod_action|add_comment)');
 
 Route::middleware('auth')->get('access', function(){
-    if(Auth::check() and Auth::user()->access) return Redirect::to('home');
+    if(Auth::check() and Auth::user()->access) return Redirect::to('/');
     return view('access.index');
 });
 

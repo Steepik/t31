@@ -53,9 +53,9 @@ class ImportExcelToDb
 
                     $this->addDataTire(
                         $new_brand->id, $item['polnoe_naimenovanie'], $item['imya_fayla'], '',
-                        $item['shirina'], $item['profil'], $item['diametr'], $item['indeks_narguzki'], $item['indeks_skorosti'],
+                        $item['shirina'], $item['profil'], $item['diametr'], $item['indeks_nagruzki'], $item['indeks_skorosti'],
                         $item['sezonnost'], $item['model'], $item['cai'], $item['ship'], '', $item['opt'], $item['roznitsa'],
-                        $item['obshch._kol_vo'], $item['tip_shiny']
+                        $item['obshchee_kolichestvo'], $item['tip_shiny']
                     );
 
                     //truncate data
@@ -73,6 +73,7 @@ class ImportExcelToDb
                         }
                     }
                 } elseif(isset($item['brend']) and $item['brend'] != null and isset($item['tip_diska'])) {
+                    //dd($item);
                     if (!$brands_check->first()) { // if brand's name doesn't exist in DB then add new brand name
                         $new_brand = $brands->create([
                             'name' => $brand_name,
@@ -92,8 +93,8 @@ class ImportExcelToDb
 
                     $this->addDataWheel(
                         $new_brand->id, $item['polnoe_naimenovanie'], $item['imya_fayla'], '', $item['model'],
-                        $item['shirina_oboda'], $item['posadochnyy_diametr'], $item['kol_vo_otverstviy'], $item['psd'], $item['vylet_et'],
-                        $item['dia'], $item['cai'], $item['tip_diska'], $item['opt'], $item['tsena_v_nalichii'], $item['obshch._kol.']
+                        $item['shirina_oboda'], $item['posadochnyy_diametr'], $item['kolichestvo_otverstiy'], $item['pcd'], $item['vylet_et'],
+                        $item['dia'], $item['cai'], $item['tip_diska'], $item['opt'], $item['roznitsa'], $item['obshchee_kolichestvo']
                     );
 
                     //truncate data

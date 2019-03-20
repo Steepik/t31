@@ -1,3 +1,15 @@
+a {
+    color: #717179 !important;
+}
+
+a:hover {
+    color: #55595d !important;
+}
+
+.ui.steps .step.active .title {
+    color: #717179 !important;
+}
+
 .auth-background {
     background-image: linear-gradient(60deg, #29323c 0%, #485563 100%) !important;
 }
@@ -69,9 +81,9 @@ button.add-to-cart {
     right:-20px;
     top:27px;
     z-index: 2;
-    background-color: #db2828!important;
+    background-color: #4c4c4e!important;
     padding: .3em .78571429em;
-    border-color: #db2828!important;
+    border-color: #4c4c4e!important;
     color: #fff!important;
     border-radius: .28571429rem;
 }
@@ -115,7 +127,7 @@ button.add-to-cart {
     margin: 1.4em;
 }
 .podbor-prod-name {
-    font-size: .85em;
+    font-size: .90em;
 }
 .ui.cards {
     justify-content: center;
@@ -309,11 +321,13 @@ button.add-to-cart {
     }
 }
 .navbar.navbar-default.navbar-static-top {
-    background: #333;
+    background: #f3f3f3;
     border: none;
+    border-bottom: 2px solid #f18431;
 }
 .home-background {
-    background: #f0efeb;
+    background-color: #eeeeee; /* For browsers that do not support gradients */
+    background-image: linear-gradient(#b5b5b5, #eeeeee); /* Standard syntax (must be last) */
 }
 
 .dropdown-menu {}
@@ -323,7 +337,7 @@ button.add-to-cart {
 div.bhoechie-tab-container{
     margin-bottom: 20px;
     z-index: 10;
-    background-color: #ffffff;
+    background-color: #f3f3f3;
     padding: 0 !important;
     border-radius: 4px;
     -moz-border-radius: 4px;
@@ -362,7 +376,7 @@ div.bhoechie-tab-menu div.list-group>a:last-child{
 div.bhoechie-tab-menu div.list-group>a.active,
 div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
 div.bhoechie-tab-menu div.list-group>a.active .fa{
-    color: #ffffff;
+    color: #ffffff !important;
     transition: all .1s ease-in;
 }
 .bhoechie-tab-content.active .ui.form {
@@ -381,11 +395,11 @@ div.bhoechie-tab-menu div.list-group>a.active:after{
     border-left: 0;
     border-bottom: 13px solid transparent;
     border-top: 13px solid transparent;
-    border-left: 10px solid #2185d0;
+    border-left: 10px solid #f18431;
 }
 
 div.bhoechie-tab-content{
-    background-color: #ffffff;
+    background-color: #f3f3f3;
     /* border: 1px solid #eeeeee; */
     padding-left: 20px;
     padding-top: 10px;
@@ -441,13 +455,13 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     position: relative;
     font-style: italic;
     font-family: "Arial Black", sans-serif;
-    color: red;
+    color: #f15c18;
 }
 .l-blue {
     position: relative;
     font-style: italic !important;
     font-family: "Arial Black", sans-serif;
-    color: #2185d0;
+    color: #201c1d;
 }
 .bycar-title {
     font-size: 3em;
@@ -458,8 +472,8 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     top: 50%;
     left: 50%;
     margin-top: -240px;
-    margin-left: -200px;
-    width: 400px;
+    margin-left: -255px;
+    width: 470px;
 }
 .login-form.register {
     position: absolute;
@@ -486,7 +500,8 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     position: relative;
     display: inline-block;
     float:left;
-    left:25px;
+    left:0px;
+    width: 70px;
 }
 .sub.header.brand {
     position: relative;
@@ -590,8 +605,6 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     position: absolute
 }
 
-
-
 .bg-white {
     background-color: #fff;
 }
@@ -629,7 +642,7 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     color: #536dfe;
 }
 .shadow-1 {
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.4);
 }
 .blue-hover {
     transition: all 0.25s ease-in;
@@ -638,11 +651,8 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 .blue-hover:hover {
     transform: translateY(-5px);
     border: none;
-    border-bottom: 5px solid #2196fe;
+    border-bottom: 5px solid #f18431;
 }
-
-
-
 
 .clearfix::before,
 .clearfix::after {
@@ -656,11 +666,6 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 .float-right{
     float: right;
 }
-
-
-
-
-
 
 /**Margin and padding utilities*/
 .mx-auto {
@@ -852,4 +857,42 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 }
 table {
     border-collapse: inherit !important;
+}
+
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+    background: linear-gradient(0.25turn, #717179, #8d8d98);
+    border:2px solid #f18431;
+}
+
+.ui.silver.button:hover {
+    color: #eeeeee !important;
+}
+
+.ui.silver.button, .ui.silver.buttons .button, .btn.btn-silver
+{
+    background-color: #717179 !important;
+    border:1px solid #f18431;
+    color: #fff;
+}
+
+.ui.basic.silver.label {
+    color: #000 !important;
+    border-color: #f18431!important;
+}
+
+.ui.basic.silver-in.button, .ui.basic.silver-in.buttons .button {
+    border: 1px solid #717179;
+    color: #000 !important;
+}
+.panel.silver {
+    background-color: #f3f3f3;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+    border-color: #717179 !important;
+    background: #797980 !important;
+}
+
+.pagination {
+    border: 1px solid #a0a0a0 !important;
 }

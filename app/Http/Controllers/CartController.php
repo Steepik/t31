@@ -6,11 +6,12 @@ use App\BrandPercent;
 use App\Cart;
 use App\Events\PusherNotify;
 use App\HistoryOrders;
+use App\Mail\CartNotify;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
@@ -90,7 +91,7 @@ class CartController extends Controller
         }
     }
 
-    public function makeOrder(Order $order, HistoryOrders $history)
+    public function makeOrder(Order $order, HistoryOrders $history, Request $request)
     {
         $session = Session();
         $products = !empty($session->get('products')) ? $session->get('products') : array();
@@ -100,7 +101,7 @@ class CartController extends Controller
             $instance = Cart::getInstanceProductType($product['type']);
             $brandId = $instance->where('tcae', $product['cae'])->first()->brand_id;
 
-            $percent = $user ? $user->percent()->where('brand_id', $brandId)->first()->percent_value : 0;
+            $percent = ($user && !empty($user->percent()->where('brand_id', $brandId)->first())) ? $user->percent()->where('brand_id', $brandId)->first()->percent_value : 0;
 
             if ($user) {
                 $oid = $order->updateOrCreate([
@@ -130,6 +131,11 @@ class CartController extends Controller
                 ]);
             }
         }
+
+        $guest = ( ! $user) ? ['name' => $request->name, 'phone' => $request->phone] : false ;
+
+        Mail::to(env('APP_EMAIL'))->send(new CartNotify($user, $products, $guest));
+
         Cart::clearCart();
         //Notify admin about new order
         //PusherNotify::dispatch(Lang::get('messages.new_order', ['name' => Auth::user()->legal_name]));
@@ -192,6 +198,8 @@ class CartController extends Controller
             Session::forget('total_price', 'cart_products');
             Session::put('total_price', $total_price);
             Session::put('cart_products', count($products));
+        } else {
+            Session::put('cart_products', 0);
         }
 
         return $products_list;
@@ -230,7 +238,9 @@ class CartController extends Controller
                 return redirect(route('cart'));
             }
             Session::forget(['products']);
+
             Session::put('products', array_filter($data->toArray()));
+
             //refresh cart
             $this->getProductsForCart();
 

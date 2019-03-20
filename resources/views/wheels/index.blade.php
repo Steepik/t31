@@ -63,7 +63,7 @@
                                         </div>
                                     </div>
                                     <hr/>
-                                    <button class="ui blue button">Выполнить подбор</button>
+                                    <button class="ui silver button">Выполнить подбор</button>
                                 </form>
                             </div>
                         </div>

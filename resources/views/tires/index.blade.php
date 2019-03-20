@@ -9,8 +9,6 @@
                     <div class="panel-body">
                         <div class="ui top attached tabular menu">
                             <a class="item active" data-tab="first">Легковые шины</a>
-                            <a class="item" data-tab="second">Грузовые шины</a>
-                            {{--<a class="item" data-tab="third">Спецтехника</a>--}}
                         </div>
                         <div class="ui bottom attached tab segment active" data-tab="first">
                             <div class="ui form">
@@ -57,7 +55,7 @@
                                         </div>
                                     </div>
                                     <hr/>
-                                    <button class="ui blue button">Выполнить подбор</button>
+                                    <button class="ui silver button">Выполнить подбор</button>
                                 </form>
                             </div>
                         </div>
@@ -118,7 +116,7 @@
                                         </div>
                                     </div>
                                     <hr/>
-                                    <button class="ui blue button">Выполнить подбор</button>
+                                    <button class="ui silver button">Выполнить подбор</button>
                                 </form>
                             </div>
                         </div>
@@ -164,7 +162,7 @@
                                         </div>
                                     </div>
                                     <hr/>
-                                    <button class="ui blue button">Выполнить подбор</button>
+                                    <button class="ui silver button">Выполнить подбор</button>
                                 </form>
                             </div>
                         </div>

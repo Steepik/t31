@@ -96,7 +96,10 @@
                         <tr>
                             <td>
                                 <a href="/" class="ui basic secondary button"><i class="cart icon"></i>Продолжить покупки</a>
-                                <a href="/make_order" class="ui basic positive button"><i class="payment icon"></i>Оформить заказ</a>
+                                <a href="/make_order" class="ui basic primary button"><i class="payment icon"></i>Оформить заказ</a>
+                                @guest
+                                <a href="#" id="quick_order" class="ui basic positive button"><i class="check icon"></i>Оформить заказ в один клик</a>
+                                @endguest
                             </td>
                             <td class="text-right"><strong>Итого: {{ $total_price }}p</strong></td>
                         </tr>
@@ -112,6 +115,28 @@
                         </div>
                     </div>
                 @endif
+            </div>
+        </div>
+        <div class="ui modal small" style="padding: 0; height: auto;bottom: auto;">
+            <i class="close icon" style="top: 0.5px;right:0.5px;color: #000;"></i>
+            <div class="header">
+                Быстрое оформление товара
+            </div>
+            <div class="content">
+                <form id="make-fast-order-form" class="ui form" method="get" action="/make_order?type=quick">
+                    <div class="field">
+                        <label>Имя</label>
+                        <input type="text" class="input-name-fast-order" name="name" placeholder="Введите имя" required>
+                    </div>
+                    <div class="field">
+                        <label>Номер телефона</label>
+                        <input id="phone" class="input-phone-fast-order" type="text" name="phone" placeholder="Введите номер тел." required>
+                    </div>
+                    <div class="actions" style="text-align: right">
+                        <div class="ui button silver cancel">Отмена</div>
+                        <button type="submit" class="ui button green make-order-single">Оформить</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

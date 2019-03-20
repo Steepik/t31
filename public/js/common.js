@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
     $('.menu .item').tab();
 
     $('.ui.dropdown')
@@ -25,8 +25,6 @@ $(document).ready(function(){
         modal.css('display', 'none');
         $('body').css('overflow', 'auto');
     });
-
-    $('.ui.modal').modal('show');
 
     //add product to cart
 
@@ -120,6 +118,12 @@ $(document).ready(function(){
         $("div.bhoechie-tab>div.bhoechie-tab-content").hide();
         $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).fadeIn(400);
     });
+
+    //mask
+    var phoneMask = new IMask(
+        document.getElementById('phone'), {
+            mask: '+{7}(000)000-00-00'
+        });
 });
 
 function isNumberKey(evt){
@@ -198,4 +202,11 @@ $('#fmod').change(function(){
     var url = '/car/' + encodeURIComponent(fvendor) + '/' + encodeURIComponent(fcar) + '/' + encodeURIComponent(fyear) + '/' + encodeURIComponent(fmod);
 
     window.location.replace(url);
+});
+
+$('#quick_order').click(function(e) {
+    e.preventDefault();
+
+    $('.ui.modal')
+        .modal('show');
 });

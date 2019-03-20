@@ -58,7 +58,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ asset('/img/logo.png')  }}" alt="Торгшина - оптовая площадка"/>
+                        <img src="{{ asset('/img/logo.jpg')  }}" style="max-width: 195px;" alt="Каретный Двор"/>
                     </a>
                 </div>
 
@@ -70,12 +70,16 @@
                     <!-- Right Side Of Navbar -->
                         <ul class="nav navbar-nav navbar-left">
                             @auth
-                                <li><a href="{{ route('order-list') }}"><button class="ui inverted red basic button">Заказы</button></a></li>
+                                <li><a href="{{ route('order-list') }}"><button class="ui silver-in basic button">Заказы</button></a></li>
                             @endauth
-                            <li><a href="{{ route('tires') }}"><button class="ui inverted red basic button">Шины</button></a></li>
-                            <li><a href="{{ route('wheels') }}"><button class="ui inverted red basic button">Диски</button></a></li>
+                            <li><a href="{{ route('tires') }}"><button class="ui silver-in basic button">Шины</button></a></li>
+                            <li><a href="{{ route('wheels') }}"><button class="ui silver-in basic button">Диски</button></a></li>
+                            @guest
+                                <li><a href="/login"><button class="ui silver-in basic button">Войти</button></a></li>
+                                <li><a href="/pre-register"><button class="ui silver-in basic button">Регистрация</button></a></li>
+                            @endguest
                             @auth
-                                <li><a href="{{ route('profile') }}"><button class="ui inverted red basic button">Личный кабинет</button></a></li>
+                                <li><a href="{{ route('profile') }}"><button class="ui silver-in basic button">Личный кабинет</button></a></li>
                             @endauth
                         </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -90,10 +94,10 @@
                                             0 шт.
                                         @endif
                                     </span>
-                                    <div class="ui red button">
+                                    <div class="ui silver button">
                                         <i class="cart icon"></i> Корзина
                                     </div>
-                                    <span class="ui basic red left pointing label cart-total-price">
+                                    <span class="ui basic silver left pointing label cart-total-price">
                                         <span id="cart_total_price">
                                         @if(Session::has('total_price'))
                                             {{ Session::get('total_price') }}
@@ -131,12 +135,11 @@
                         @auth
                         <div class="ui floating icon dropdown button profile-btn" style="margin-top:1em; margin-left: 1em;">
                             <i class="user icon"></i>
-                            <span>{{ Auth::user()->name }}</span>
+                            <span>{{ Auth::user()->first_name }}</span>
                             <div class="menu">
                                 @admin
                                 <a href="{{ route('control') }}" class="item"> <i class="cogs icon"></i> Панель управления</a>
                                 @endadmin
-                                <a href="/excel-download" class="item"> <i class="file excel outline icon"></i> Выгрузки</a>
                                 <a href="{{ route('logout') }}" class="item"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"> <i class="sign out alternate icon"></i> Выход</a>
@@ -164,5 +167,6 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
+    <script src="https://unpkg.com/imask"></script>
 </body>
 </html>

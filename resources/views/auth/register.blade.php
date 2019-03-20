@@ -5,16 +5,17 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2 login-form register">
             <div class="panel panel-default">
-                <div class="panel-heading">Регистрация</div>
+                <div class="panel-heading">Регистрация @if ($wholesaler) оптового @else розничного @endif покупателя</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Контактное лицо</label>
+                            <label for="name" class="col-md-4 control-label">ФИО</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" title="We ask for your age only for statistical purposes." type="text"
+                                       class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -60,7 +61,7 @@
                             </div>
                         </div>
                         <fieldset>
-                            <legend>Важные данные</legend>
+                            @if ($wholesaler)
                             <div class="form-group{{ $errors->has('legal_name') ? ' has-error' : '' }}">
                                 <label for="legal_name" class="col-md-4 control-label">Юридическое название</label>
 
@@ -87,6 +88,7 @@
                                     @endif
                                 </div>
                             </div>
+                            @endif
                             <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
                                 <label for="city" class="col-md-4 control-label">Город</label>
 
@@ -100,6 +102,7 @@
                                     @endif
                                 </div>
                             </div>
+                            @if ($wholesaler)
                             <div class="form-group">
                                 <label for="city" class="col-md-4 control-label">Улица</label>
 
@@ -114,6 +117,7 @@
                                     <input id="house" type="text" class="form-control" name="house" value="{{ old('house') }}" required>
                                 </div>
                             </div>
+                            @endif
                             <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                                 <label for="phone" class="col-md-4 control-label">Телефон</label>
 
@@ -130,11 +134,12 @@
                         </fieldset>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-silver">
                                     Зарегистрироваться
                                 </button>
                             </div>
                         </div>
+                        <input type="hidden" name="wholesaler" value="{{  $wholesaler ? 1 : 0 }}">
                     </form>
                 </div>
             </div>

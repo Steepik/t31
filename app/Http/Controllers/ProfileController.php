@@ -35,7 +35,9 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('profile.index', compact('user'));
+        $wholesaler = Auth::user()->is_wholesaler;
+
+        return view('profile.index', compact('user', 'wholesaler'));
     }
 
     public function updateInfo(ProfileInfoRequest $request)

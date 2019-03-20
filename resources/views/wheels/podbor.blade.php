@@ -64,7 +64,7 @@
                                         </div>
                                     </div>
                                     <hr/>
-                                    <button class="ui blue button">Выполнить подбор</button>
+                                    <button class="ui silver button">Выполнить подбор</button>
                                 </form>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                                                             @php
                                                                 $image_id = \App\Wheel::brandImage($wheel->brand->name)->first();
                                                             @endphp
-                                                            <img src="//torgshina.com/image/manufacturer/{{ $image_id->manufacturer_id }}.jpg" alt="{{ $wheel->brand->name }}">
+                                                            <img src="//torgshina.com/image/manufacturer/{{ $image_id->manufacturer_id ?? '' }}.jpg" alt="{{ $wheel->brand->name }}">
                                                         </div><br/>
                                                         <span class="podbor-prod-name">{{ $wheel->name }}</span>
                                                         <div class="sub header">{{ $wheel->tcae }}
@@ -134,7 +134,7 @@
                                                 <form onsubmit="return false;" method="post" action="{{ route('addtocart') }}" class="form-add-to-cart">
                                                     <div class="ui action input">
                                                         <input type="number" min="1" name="count" class="count-field" id="count" placeholder="Количество">
-                                                        <button class="ui teal right labeled icon button add-to-cart">
+                                                        <button class="ui silver right labeled icon button add-to-cart">
                                                             <i class="add to cart icon"></i>
                                                             Купить
                                                         </button>

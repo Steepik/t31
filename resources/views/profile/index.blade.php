@@ -41,11 +41,11 @@
                                                             Ваш менеджер
                                                         </div>
                                                         <div class="meta">
-                                                            <span class="right floated time">Лапкин Роман Михайлович</span>
+                                                            <span class="right floated time">Александр</span>
                                                             <span class="category">ФИО:</span>
                                                         </div>
                                                         <div class="meta">
-                                                            <span class="right floated time">+7(4722) 414-494</span>
+                                                            <span class="right floated time">+7(920) 201-97-97</span>
                                                             <span class="category">Тел.: </span>
                                                         </div>
                                                         <div class="description">
@@ -95,59 +95,58 @@
                                                             <div class="field">
                                                                 <label>Контактное лицо</label>
                                                                 <div class="ui left icon input">
-                                                                    <input type="text" required name="name" placeholder="Контактное лицо" value="{{ $user->name or '' }}">
+                                                                    <input type="text" required name="name" placeholder="Контактное лицо" value="{{ $user->name }}">
                                                                     <i class="user icon"></i>
                                                                 </div>
                                                             </div>
+                                                            @if($wholesaler)
                                                             <div class="field">
                                                                 <label>Юридическое название</label>
                                                                 <div class="ui left icon input">
-                                                                    <input type="text" required name="legal_name" placeholder="Юридическое название" value="{{ $user->legal_name or '' }}">
+                                                                    <input type="text" required name="legal_name" placeholder="Юридическое название" value="{{ $user->legal_name }}">
                                                                     <i class="industry icon"></i>
                                                                 </div>
                                                             </div>
                                                             <div class="field">
                                                                 <label>ИНН</label>
                                                                 <div class="ui left icon input">
-                                                                    <input type="text" required name="inn" placeholder="ИНН" value="{{ $user->inn or '' }}">
+                                                                    <input type="text" required name="inn" placeholder="ИНН" value="{{ $user->inn }}">
                                                                     <i class="id address book outline icon"></i>
                                                                 </div>
                                                             </div>
+                                                            @endif
                                                             <div class="field">
                                                                 <label>Город</label>
                                                                 <div class="ui left icon input">
-                                                                    <input type="text" required name="city" placeholder="Город" value="{{ $user->city or '' }}">
+                                                                    <input type="text" required name="city" placeholder="Город" value="{{ $user->city}}">
                                                                     <i class="building icon"></i>
                                                                 </div>
                                                             </div>
+                                                            @if($wholesaler)
                                                             <div class="field">
                                                                 <label>Улица</label>
                                                                 <div class="ui left icon input">
-                                                                    <input type="text" required name="street" placeholder="Улица" value="{{ $user->street or '' }}">
+                                                                    <input type="text" required name="street" placeholder="Улица" value="{{ $user->street }}">
                                                                     <i class="building icon"></i>
                                                                 </div>
                                                             </div>
                                                             <div class="field">
                                                                 <label>Дом, квартира, корпус</label>
                                                                 <div class="ui left icon input">
-                                                                    <input type="text" required name="house" placeholder="Дом, кв., к." value="{{ $user->house or '' }}">
+                                                                    <input type="text" required name="house" placeholder="Дом, кв., к." value="{{ $user->house }}">
                                                                     <i class="building icon"></i>
                                                                 </div>
                                                             </div>
+                                                            @endif
                                                             <div class="field">
                                                                 <label>Телефон</label>
                                                                 <div class="ui left icon input">
-                                                                    <input type="text" required name="phone" placeholder="Телефон" value="{{ $user->phone or '' }}">
+                                                                    <input id="phone" type="text" required name="phone" placeholder="Телефон" value="{{ $user->phone }}">
                                                                     <i class="phone icon"></i>
                                                                 </div>
                                                             </div>
-                                                            <hr/>
-                                                            <div class="ui checkbox">
-                                                                <input type="checkbox" name="hideOptPrice" {{ Session::has('hideOpt') ? 'checked' : '' }}>
-                                                                <label for="hideOptPrice">Скрыть оптовую цену</label>
-                                                            </div>
                                                             <div class="text-center">
-                                                                <button type="submit" class="ui blue button btn-wd">Сохранить</button>
+                                                                <button type="submit" class="ui silver button btn-wd">Сохранить</button>
                                                             </div>
                                                         </div>
                                                         @method('PUT')
@@ -188,7 +187,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="text-center">
-                                                                    <button type="submit" class="ui blue button btn-wd">Изменить пароль</button>
+                                                                    <button type="submit" class="ui silver button btn-wd">Изменить пароль</button>
                                                                 </div>
                                                             </div>
                                                             @method('PUT')
