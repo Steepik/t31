@@ -49,6 +49,6 @@ class CartNotify extends Mailable
      */
     public function build()
     {
-        return $this->subject('Покупка на сайте')->markdown('admin.emails.cart_notify');
+        return $this->from(env('APP_EMAIL'), 'Каретный Двор')->subject('Покупка на сайте')->markdown('admin.emails.cart_notify');
     }
 }
