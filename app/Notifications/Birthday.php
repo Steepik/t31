@@ -44,7 +44,7 @@ class Birthday extends Notification
         $text .= (User::isBirthday($notifiable->id)) ? 'днем рождения!' : '';
 
         return (new MailMessage)
-            ->from(env('APP_EMAIL'))
+            ->from(env('APP_EMAIL'), 'Каретный Двор')
             ->subject('C ' . $text)
             ->greeting('C ' . $text)
             ->line($notifiable->name . ', от всего нашего коллектива поздравляем Вас с ' . $text)

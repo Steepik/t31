@@ -47,6 +47,6 @@ class SendNotifyStatus extends Mailable
      */
     public function build()
     {
-        return $this->subject('Проверка товара')->markdown('admin.emails.notify_status');
+        return $this->from(env('APP_EMAIL'), 'Каретный Двор')->subject('Проверка товара')->markdown('admin.emails.notify_status');
     }
 }

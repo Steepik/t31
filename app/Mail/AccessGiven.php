@@ -36,6 +36,6 @@ class AccessGiven extends Mailable
      */
     public function build()
     {
-        return $this->subject('Доступ к платформе')->markdown('admin.emails.access_given');
+        return $this->from(env('APP_EMAIL'), 'Каретный Двор')->subject('Доступ к платформе')->markdown('admin.emails.access_given');
     }
 }
