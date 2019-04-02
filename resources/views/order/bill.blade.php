@@ -61,29 +61,29 @@
 
     <tr>
         <td align="right">Поставщик&nbsp;&nbsp;:</td>
-        <td align="left">&nbsp;<b>ИП Лапкин М.И.</b></td>
+        <td align="left">&nbsp;<b>ИП Маюк В. Н.</b></td>
     </tr>
     <tr>
         <td align="right">ИНН&nbsp;&nbsp;:</td>
-        <td align="left">&nbsp;312303519509&nbsp;&nbsp;ОКПО 0162784635</td>
+        <td align="left">&nbsp;891100015330</td>
     </tr>
     <tr>
         <td align="right">Адрес&nbsp;&nbsp;:</td>
-        <td align="left">&nbsp;308001, г.Белгород, ул.Волчанская, д.139, кор.5 </td>
+        <td align="left">&nbsp;308515, РФ, Белгородcкая область, Белгородский район, с. Ближняя Игуменка, ул.7-я Садовая, д.29 </td>
     </tr>
     <tr>
         <td style="text-align: right;">
             Телефон/Факс&nbsp;&nbsp;:
         </td>
-        <td class="a-l">&nbsp;+7(4722) 414-494</td>
+        <td class="a-l">&nbsp;+7 (4722) 58-46-84</td>
     </tr>
     <tr>
         <td style="text-align: right;">
             Банковские реквизиты&nbsp;&nbsp;:
         </td>
         <td class="a-l">
-            &nbsp;Р/С 40802810100020000475<br>
-            &nbsp;В ПАО УКБ "Бегородсоцбанк" г.Белгород&nbsp;&nbsp;БИК 041403701
+            &nbsp;Р/С 40802810202970000192<br>
+            &nbsp;АО «АЛЬФА-БАНК» г.Москва&nbsp;БИК 044525593
         </td>
     </tr>
     </tbody></table>
@@ -223,7 +223,7 @@
     <tr>
 
         <td colspan="2" style="text-align: center;">
-            <img src="{{ asset('img/stamp.jpg') }}" alt="Печать">
+
 
         </td>
 
