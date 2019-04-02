@@ -69,7 +69,11 @@
                                         {{ csrf_field() }}
                                     </form>
                                 </td>
-                                <td data-th="Subtotal" class="text-center">{{ ($product[0]->price_opt * $product['count']) }}p</td>
+                                @wholesaler
+                                    <td data-th="Subtotal" class="text-center">{{ ($product[0]->price_opt * $product['count']) }}p</td>
+                                @else
+                                    <td data-th="Subtotal" class="text-center">{{ ($product[0]->price_roz * $product['count']) }}p</td>
+                                @endwholesaler
                                 <td class="actions" data-th="">
                                     <div class="ui buttons">
                                         <button class="ui standart button refresh">Пересчитать</button>
@@ -78,7 +82,11 @@
                                     </div>
                                 </td>
                             </tr>
-                            <?php $total_price += ($product[0]->price_opt * $product['count']); ?>
+                            @wholesaler
+                                <?php $total_price += ($product[0]->price_opt * $product['count']); ?>
+                            @else
+                                <?php $total_price += ($product[0]->price_roz * $product['count']); ?>
+                            @endwholesaler
                         @endforeach
                         @if(Session::has('error-refresh'))
                             <div class="ui negative message">
@@ -96,9 +104,11 @@
                         <tr>
                             <td>
                                 <a href="/" class="ui basic secondary button"><i class="cart icon"></i>Продолжить покупки</a>
-                                <a href="/make_order" class="ui basic primary button"><i class="payment icon"></i>Оформить заказ</a>
+
                                 @guest
-                                <a href="#" id="quick_order" class="ui basic positive button"><i class="check icon"></i>Оформить заказ в один клик</a>
+                                    <a href="#" id="quick_order" class="ui basic positive button"><i class="check icon"></i>Оформить заказ в один клик</a>
+                                @else
+                                    <a href="/make_order" class="ui basic primary button"><i class="payment icon"></i>Оформить заказ</a>
                                 @endguest
                             </td>
                             <td class="text-right"><strong>Итого: {{ $total_price }}p</strong></td>
@@ -134,7 +144,7 @@
                     </div>
                     <div class="actions" style="text-align: right">
                         <div class="ui button silver cancel">Отмена</div>
-                        <button type="submit" class="ui button green make-order-single">Оформить</button>
+                        <button type="submit" class="ui button silver make-order-single">Оформить</button>
                     </div>
                 </form>
             </div>

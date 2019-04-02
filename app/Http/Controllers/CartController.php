@@ -8,6 +8,7 @@ use App\Events\PusherNotify;
 use App\HistoryOrders;
 use App\Mail\CartNotify;
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
@@ -39,6 +40,7 @@ class CartController extends Controller
     public function index()
     {
         $products = $this->getProductsForCart();
+
         return view('cart.index', compact('products'));
     }
 
@@ -50,7 +52,7 @@ class CartController extends Controller
             $tire_type = $request->type; // 1 - tires | 2 - trucks | 3 - special | 4 - wheels
             $product = Cart::getInstanceProductType($request->type);
             $p_info = $product->where('tcae', $request->product_id)->first();
-            $p_price = $p_info['price_opt'];
+            $p_price = (Auth::check() && User::isAvailableToShowOptPriceForRoz()) ? $p_info['price_opt'] : $p_info['price_roz'];
             $p_quantity = $p_info['quantity'];
             $this->total_price = $p_price * $request->count;
             $this->total_count = $request->count;
@@ -104,6 +106,8 @@ class CartController extends Controller
             $percent = ($user && !empty($user->percent()->where('brand_id', $brandId)->first())) ? $user->percent()->where('brand_id', $brandId)->first()->percent_value : 0;
 
             if ($user) {
+                $p_info = Cart::getInstanceProductType($product['type'])->where('tcae', $product['cae'])->first();
+
                 $oid = $order->updateOrCreate([
                     'uid' => $user->id,
                     'cnum' => $this->unique_cnum(),
@@ -114,10 +118,10 @@ class CartController extends Controller
                     'merged' => false,
                     'archived' => false,
                     'percent_value' => $percent,
+                    'buy_price' => (Auth::check() && User::isAvailableToShowOptPriceForRoz()) ? $p_info->price_opt : $p_info->price_roz
                 ]);
 
                 //add order's history
-                $p_info = Cart::getInstanceProductType($product['type'])->where('tcae', $product['cae'])->first();
                 $history->create([
                     'uid' => Auth::user()->id,
                     'oid' => $oid->id,
@@ -125,7 +129,7 @@ class CartController extends Controller
                     'name' => $p_info->name,
                     'tseason' => $p_info->tseason,
                     'spike' => (! is_null($p_info->spike)) ? $p_info->spike : 0,
-                    'price_opt' => $p_info->price_opt,
+                    'price_opt' => (Auth::check() && User::isAvailableToShowOptPriceForRoz()) ? $p_info->price_opt : $p_info->price_roz,
                     'price_roz' => $p_info->price_roz,
                     'image' => $p_info->image
                 ]);
@@ -140,7 +144,9 @@ class CartController extends Controller
         //Notify admin about new order
         //PusherNotify::dispatch(Lang::get('messages.new_order', ['name' => Auth::user()->legal_name]));
 
-        return $user ? redirect(route('order-list')) : redirect(route('home'));
+        return $user
+            ? redirect(route('order-list'))->with('success-buy', '')
+            : redirect(route('home'))->with('success-buy', '');
 
     }
 
@@ -190,15 +196,18 @@ class CartController extends Controller
             foreach ($products as $key =>$product) {
                 $data = Cart::getInstanceProductType($product['type']);
                 $pdata = $data->where('tcae', $product['pid'])->first();
+                $price = (Auth::check() && User::isAvailableToShowOptPriceForRoz()) ? $pdata->price_opt * $product['count'] : $pdata->price_roz * $product['count'];
                 $products_list->prepend(['id' => $product['id'], $pdata , 'count' => $product['count'], 'ptype' => $product['type']]);
-                $total_price += $pdata->price_opt * $product['count'];
+                $total_price += $price;
             }
 
             //refresh session data
-            Session::forget('total_price', 'cart_products');
+            Session::forget(['total_price', 'cart_products']);
             Session::put('total_price', $total_price);
             Session::put('cart_products', count($products));
         } else {
+            Session::put('total_price', $total_price);
+            Session::put('cart_products', 0);
             Session::put('cart_products', 0);
         }
 

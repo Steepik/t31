@@ -13,6 +13,7 @@ use App\StatusText;
 use App\Tire;
 use App\Traits\CalcPercent;
 use App\Truck;
+use App\User;
 use App\Wheel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -74,7 +75,14 @@ class HomeController extends Controller
         //BY CAR
         $vendors = DB::table('sel_by_cars')->select('fvendor')->distinct()->get();
 
-        return view('home', compact(['tires', 'wheels', 'list', 'tire_brands', 'truck_brands', 'special_brands', 'wheels_brands', 'vendors']));
+        if (Auth::check() && !Auth::user()->is_wholesaler) {
+            //По какое число действует оптовая цена для розничного покупателя
+            $birthday = User::where('id', Auth::user()->id)->first()->birth;
+            $dateOptAvailable = Carbon::parse($birthday)->addDays(env('BIRTHDAY_DATE_OPT_PRICE_AVAILABLE'))->format('d') . '.' .
+                Carbon::parse($birthday)->addDays(env('BIRTHDAY_DATE_OPT_PRICE_AVAILABLE'))->format('m') . '.' . now()->year;
+        }
+
+        return view('home', compact(['dateOptAvailable', 'tires', 'wheels', 'list', 'tire_brands', 'truck_brands', 'special_brands', 'wheels_brands', 'vendors']));
     }
 
     /**
@@ -119,7 +127,11 @@ class HomeController extends Controller
                     }
                 }
 
-                $priceOptOld = $products['product']->getOriginal('price_opt');
+               /* $priceOptOld = (User::isAvailableToShowOptPriceForRoz())
+                    ? $products['product']->getOriginal('price_opt')
+                    : $products['product']->getOriginal('price_roz') ;*/
+
+                $priceOptOld = $order->buy_price;
                 $products['product']['price_percent'] = $this->calcPercentForOrder($priceOptOld, $order->id);
 
             } elseif($order->ptype == null) {
@@ -376,19 +388,26 @@ class HomeController extends Controller
     {
         $price = 0;
         $result = $this->m_order->where('cnum', '=', $cnum)->get();
+        $isShowOptPrice = User::isAvailableToShowOptPriceForRoz();
 
         foreach ($result as $item) {
             foreach ($item->orders as $order) {
                 $instance = Cart::getInstanceProductType($order->ptype);
                 $tire = $instance->where('tcae', $order->tcae)->first();
                 if(! is_null($tire)) {
-                    $priceOptOld = $tire->getOriginal('price_opt');
+                    /*$priceOptOld = ($isShowOptPrice)
+                        ? $tire->getOriginal('price_opt')
+                        : $tire->getOriginal('price_roz') ;*/
+
+                    $priceOptOld = $order->buy_price;
                     $orderPercentPrice = $this->calcPercentForOrder($priceOptOld, $order->id);
 
                     $price += $orderPercentPrice * $order->count;
                 } else {
                     $h_info = $this->h_order->where('oid', $order->id)->first();
-                    $price += $h_info->price_opt * $order->count;
+                    $price += ($isShowOptPrice)
+                        ? $h_info->price_opt * $order->count
+                        : $h_info->price_roz * $order->count;
                 }
             }
         }

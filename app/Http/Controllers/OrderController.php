@@ -7,6 +7,7 @@ use App\Comment;
 use App\HistoryOrders;
 use App\Order;
 use App\Traits\CalcPercent;
+use App\User;
 use Illuminate\Http\Request;
 use App\Tire;
 use App\Truck;
@@ -85,7 +86,15 @@ class OrderController extends Controller
                         }
                     }
 
-                    $priceOptOld = $products->getOriginal('price_opt');
+                    /*$priceOptOld = (User::isAvailableToShowOptPriceForRoz())
+                        ? $products->getOriginal('price_opt')
+                        : $products->getOriginal('price_roz');*/
+
+                    $originalPrice = (User::isAvailableToShowOptPriceForRoz())
+                        ? $products->getOriginal('price_opt')
+                        : $products->getOriginal('price_roz');
+
+                    $priceOptOld = $order->buy_price;
                     $products['price_percent'] = $this->calcPercentForOrder($priceOptOld, $order->id);
                 }
             }
@@ -98,7 +107,7 @@ class OrderController extends Controller
             $user->orders()->where('id', $id)->update(['commented' => 0]);
         }
 
-        return view('order.index', compact(['products', 'order_id']));
+        return view('order.index', compact(['products', 'order_id', 'priceOptOld', 'originalPrice']));
     }
 
     public function showMergedOrder($id)
@@ -108,7 +117,7 @@ class OrderController extends Controller
         $order = $user->orders()->find($id);
         $m_products = $this->getProductsForMergedOrder($order->cnum);
         if($order and $m_products->count() > 1) {
-            if ($order->ptype == NULL and !$m_products->isEmpty()) { // wheels
+            if ($order->ptype == NULL and !$m_products->isEmpty()) {
                 $products['products'] = $m_products;
                 $products['oid'] = $order->id;
                 $products['cnum'] = $order->cnum;
@@ -155,6 +164,8 @@ class OrderController extends Controller
         $user = Auth::user();
         $products = array();
         $result = $user->orders()->where('id', $id)->get();
+        $isShowOptPrice = User::isAvailableToShowOptPriceForRoz();
+
         if (!$result->isEmpty() and $result[0]['sid'] == 2) { // not empty and has status "ready to go waiting for pay"
             foreach ($result as $order) {
                 if ($order->ptype != null) {
@@ -169,7 +180,12 @@ class OrderController extends Controller
                     $products['sid'] = $order->status->id;
                     $products['comments'] = $order->comments()->where('oid', $id)->orderBy('created_at', 'ASC')->get();
 
-                    $priceOptOld = $products->getOriginal('price_opt');
+                   /* $priceOptOld = ($isShowOptPrice)
+                        ? $products->getOriginal('price_opt')
+                        : $products->getOriginal('price_roz');*/
+
+                    $priceOptOld = $order->buy_price;
+
                     $products['price_percent'] = $this->calcPercentForOrder($priceOptOld, $order->id);
                 }
             }
@@ -222,6 +238,8 @@ class OrderController extends Controller
     {
         $data = collect();
         $result = $this->m_order->where('cnum', $cnum)->get();
+        $isShowOptPrice = User::isAvailableToShowOptPriceForRoz();
+
         if(! $result->isEmpty()) {
             foreach ($result as $item) {
                 foreach ($item->orders as $order) {
@@ -230,7 +248,12 @@ class OrderController extends Controller
                     if (!is_null($product)) { //if product not found | was deleted
                         $product['count'] = $order->count; //common count for each product
 
-                        $priceOptOld = $product->getOriginal('price_opt');
+                       /* $priceOptOld = ($isShowOptPrice)
+                            ? $product->getOriginal('price_opt')
+                            : $product->getOriginal('price_roz');*/
+
+                        $priceOptOld = $order->buy_price;
+
                         $product['price_percent'] = $this->calcPercentForOrder($priceOptOld, $order->id);
 
                         $data->push($product);
@@ -261,18 +284,29 @@ class OrderController extends Controller
     {
         $price = 0;
         $result = $this->m_order->where('cnum', '=', $cnum)->get();
+        $isShowOptPrice = User::isAvailableToShowOptPriceForRoz();
+
         foreach ($result as $item) {
             foreach ($item->orders as $order) {
                 $instance = Cart::getInstanceProductType($order->ptype);
                 $tire = $instance->where('tcae', $order->tcae)->first();
                 if(! is_null($tire)) {
-                    $priceOptOld = $tire->getOriginal('price_opt');
+                    /*$priceOptOld = ($isShowOptPrice)
+                        ? $tire->getOriginal('price_opt')
+                        : $tire->getOriginal('price_roz');*/
+
+                    $priceOptOld = $order->buy_price;
+
                     $orderPercentPrice = $this->calcPercentForOrder($priceOptOld, $order->id);
 
                     $price += $orderPercentPrice * $order->count;
                 } else {
-                    $h_info = $this->h_order->where('oid', $order->id)->first();
-                    $price += $h_info->price_opt * $order->count;
+                    /*$h_info = $this->h_order->where('oid', $order->id)->first();
+                    $price += ($isShowOptPrice)
+                        ? $h_info->price_opt * $order->count
+                        : $h_info->price_roz * $order->count;*/
+
+                    $price += $order->buy_price * $order->count;
                 }
             }
         }

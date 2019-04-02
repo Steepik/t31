@@ -55,7 +55,7 @@
                 <li class="{{ request()->route()->getName() == 'buyers' ? 'active' : '' }}">
                     <a href="{{ route('buyers') }}">
                         <i class="ti-user"></i>
-                        <p>Оптовики</p>
+                        <p>Пользователи</p>
                     </a>
                 </li>
                 <li class="{{ request()->route()->getName() == 'admin_order' ? 'active' : '' }}">

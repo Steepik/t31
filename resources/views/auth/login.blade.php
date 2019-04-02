@@ -5,8 +5,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3 login-form">
            <div class="company-name">
-               <img src="{{ asset('/img/hankook-logo.png')  }}" title="Каретный Двор - официальный сайт" class="login-logo" alt="Торгшина"/>
-               <h2 class="l-red">Каретный</h2>
+               <h2 class="l-blue">Каретный</h2>
                <h2 class="l-blue">Двор</h2>
            </div>
             <h1 class="login-desc">Автоцентр</h1>
@@ -51,7 +50,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <a href="{{ route('register') }}">
+                    <a href="/pre-register">
                         <button class="ui silver basic button" style="width: 100%">Регистрация</button>
                     </a>
                 </div>

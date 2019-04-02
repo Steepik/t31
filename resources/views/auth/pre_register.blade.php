@@ -21,7 +21,11 @@
                             </h1>
 
                             <p class="mb-1">
-                                Summer is coming to a close just around the corner. But it's not too late to squeeze in another weekend trip &hellip;
+                            <h5><em>Преимущества регистрации:</em></h5>
+                            <ul style="list-style-type: decimal">
+                                <li>Два дня до дня рождения, в день рождения и два дня после дня рождения, клиент заказавший товар через сайт и при наличной форме оплаты - получает оптовые цены.</li>
+                                <li>Узнает про акции и спецпредложения.</li>
+                            </ul>
                             </p>
 
                         </div>
@@ -44,7 +48,7 @@
                             </h1>
 
                             <p class="mb-1">
-                                Summer is coming to a close just around the corner. But it's not too late to squeeze in another weekend trip &hellip;
+                                Юридическое лицо занимающееся продажей автотоваров.
                             </p>
 
                         </div>

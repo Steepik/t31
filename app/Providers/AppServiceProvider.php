@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\GlobalNotify;
 use App\NotifyUsers;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
@@ -27,7 +28,11 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::if('wholesaler', function() {
-            return Auth::user()->is_wholesaler;
+
+            if (Auth::check())
+                return Auth::user()->is_wholesaler || User::isAvailableToShowOptPriceForRoz();
+
+            return false;
         });
     }
 

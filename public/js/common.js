@@ -4,6 +4,10 @@ $(document).ready(function() {
     $('.ui.dropdown')
         .dropdown();
 
+    $('[data-toggle="datepicker"]').datepicker({
+        language: 'ru-RU',
+    });
+
     // Get the modal
     var modal = $('#myModal');
 
@@ -123,6 +127,13 @@ $(document).ready(function() {
     var phoneMask = new IMask(
         document.getElementById('phone'), {
             mask: '+{7}(000)000-00-00'
+        });
+
+    var dateMask = new IMask(
+        document.getElementById('dateBirth'), {
+            mask: Date,
+            min: new Date(1900, 0, 1),
+            lazy: false
         });
 });
 

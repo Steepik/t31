@@ -10,16 +10,21 @@
 @endif
 ### Информация о товаре
 @component('mail::table')
+
+@php $total_sum = 0 @endphp
+
 | Наименование       | Кол-во         | Итого  |
 | ------------------ |:-------------: | --------:|
 @foreach($products as $product)
     @php
         $instance = \App\Cart::getInstanceProductType($product['type']);
         $p_info = $instance->where('tcae', $product['cae'])->first();
+        $total_sum += $product['count'] * $p_info->price_roz;
     @endphp
-| {{ $p_info->name }}| {{ $product['count'] }}| {{ $product['count'] * $p_info->price_roz }}|
+| {{ $p_info->name }}| {{ $product['count'] }}| {{ $product['count'] * $p_info->price_roz }}p|
 @endforeach
 @endcomponent
+   {!! html_entity_decode('<hr/><span style="float: right;">Общая сумма: ' . $total_sum . 'p </span>') !!}
 @endcomponent
 
 

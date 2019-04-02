@@ -14,7 +14,7 @@
                             <label for="name" class="col-md-4 control-label">ФИО</label>
 
                             <div class="col-md-6">
-                                <input id="name" title="We ask for your age only for statistical purposes." type="text"
+                                <input id="name" type="text"
                                        class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
@@ -88,6 +88,21 @@
                                     @endif
                                 </div>
                             </div>
+                            @endif
+                            @unless ($wholesaler)
+                                    <div class="form-group{{ $errors->has('birth') ? ' has-error' : '' }}">
+                                        <label for="birth" class="col-md-4 control-label">Дата рождения</label>
+
+                                        <div class="col-md-6">
+                                            <input name="birth" value="{{ old('birth') }}" class="form-control" id="dateBirth" data-toggle="datepicker" required>
+
+                                            @if ($errors->has('birth'))
+                                                <span class="help-block">
+                                            <strong>{{ $errors->first('birth') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+                                    </div>
                             @endif
                             <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
                                 <label for="city" class="col-md-4 control-label">Город</label>

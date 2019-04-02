@@ -22,16 +22,7 @@
 
     @yield('css')
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114770315-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-114770315-1');
-    </script>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" rel="stylesheet">
 </head>
 <body class="home-background">
     <div id="app">
@@ -165,8 +156,12 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
     <script src="https://unpkg.com/imask"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/i18n/datepicker.ru-RU.min.js"></script>
+
+    <script src="{{ asset('js/common.js') }}"></script>
 </body>
 </html>

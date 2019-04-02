@@ -3,6 +3,15 @@
 @section('content')
     <div class="container">
         <div class="col-md-12">
+            @if(Session::has('success-buy'))
+                <div class="ui grey message">
+                    <i class="close icon"></i>
+                    <div class="header">
+                        Заказ оформлен
+                    </div>
+                    Вы успешно оформили покупку! В ближайшее время с Вами свяжется менеджер.
+                </div>
+            @endif
             <div class="panel panel-default">
                 <div class="panel-heading">Ваши заказы</div>
 

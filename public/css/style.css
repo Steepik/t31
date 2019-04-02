@@ -816,6 +816,10 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     padding-bottom: 3rem;
 }
 
+.ui.negative.button, .ui.negative.buttons .button {
+    background-color: #717179 !important;
+}
+
 /** RESPONSIVE **/
 @media screen and (min-width: 1024px) {
     .table-responsive {

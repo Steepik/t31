@@ -28,7 +28,12 @@
                             @foreach($buyers as $buyer)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $buyer->name }}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-fill btn-icon" style="background-color: #717179; pointer-events: none">
+                                            @if($buyer->is_wholesaler) ОПТ @else РОЗ @endif
+                                        </button>
+                                        {{ $buyer->name }}
+                                    </td>
                                     <td>{{ $buyer->email }}</td>
                                     <td>{{ $buyer->legal_name }}</td>
                                     <td>{{ $buyer->inn }}</td>
@@ -51,9 +56,9 @@
                                                 @csrf
                                             </form>
                                             <form action="{{ url('/control/moder/give_access') }}" method="POST" class="moder-btn-from">
-                                                <button class="btn btn-sm btn-danger btn-icon" title="Заблокировать"><i class="fa fa-lock"></i></button>
+                                                <button class="btn btn-sm btn-danger btn-icon" title="Удалить"><i class="fa fa-trash"></i></button>
                                                 <input type="hidden" name="uid" value="{{ $buyer->id }}">
-                                                <input type="hidden" name="action" value="blocked">
+                                                <input type="hidden" name="action" value="delete">
                                                 @csrf
                                             </form>
                                         </div>
@@ -82,7 +87,7 @@
         </script>
     @elseif(Session::has('deleted'))
         <script type="text/javascript">
-            var msg = 'Выбраный товар был отменён';
+            var msg = 'Выбраный пользователь был удален';
             var icon = 'ti-na';
             var type = 'info';
             chart.showNotification(msg, icon, type, 'top', 'right');

@@ -190,6 +190,7 @@
                                             <a title="Сортировать по возрастанию" href="{{ url($url.'&sortRozPrice=asc') }}">Цена (Розница) <i class="arrow down icon"></i></a>
                                         @endif
                                     </th>
+                                    @wholesaler
                                     @if(!Session::has('hideOpt'))
                                     <th nowrap>
                                         @if(isset($appends['sortOptPrice']) and $appends['sortOptPrice'] == 'asc')
@@ -201,6 +202,7 @@
                                         @endif
                                     </th>
                                     @endif
+                                    @endwholesaler
                                     <th>Остаток</th>
                                     <th>Действия</th>
                                 </tr></thead>
@@ -240,9 +242,11 @@
                                             </div>
                                         </h4></td>
                                     <td class="center aligned">{{ $tire->price_roz }}</td>
+                                    @wholesaler
                                     @if(!Session::has('hideOpt'))
                                     <td class="center aligned" style="font-style: italic;"><b>{{ $tire->price_opt }}</b></td>
                                     @endif
+                                    @endwholesaler
                                     <td class="center aligned" style="font-style: italic;">
                                         @if($tire->quantity > 8)
                                             <b> > 8 </b>

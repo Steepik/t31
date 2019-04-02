@@ -3,9 +3,6 @@
 @section('content')
     <div class="ui container">
         <div class="ui segments">
-            <div class="ui segment">
-                <p>Информация о заказе @if($products->sid == 2 or $products->sid == 5 and $products->sid != 4 and $products->sid != 6 and Auth::user()->payment_type == 0)<a href="/bill/{{ $order_id }}" class="btn link">Печать Счета</a> @endif </p>
-            </div>
             <div class="ui secondary segment">
                 <div class="ui cards top-info">
                     <div class="card">
@@ -45,6 +42,9 @@
                             <div class="header text-center">Информация</div><br/>
                             <div class="meta">
                                 <span>Общее кол-во: {{ $products->count }}</span><br/>
+                                @if($priceOptOld != $originalPrice)
+                                    <span><b>Цена при покупке: {{  $priceOptOld }}p</b></span><br/>
+                                @endif
                                 <span>Сумма: {{ ($products->price_percent * $products->count) }}p</span><br/>
                             </div>
                             <p></p>
@@ -74,7 +74,9 @@
                         <th>Товар</th>
                         <th>Бренд</th>
                         <th>Цена(Розница)</th>
+                        @wholesaler
                         <th>Цена(Оптом)</th>
+                        @endwholesaler
                         <th nowrap>Кол-во</th>
                         <th class="text-center">Итого</th>
                     </tr>
@@ -108,7 +110,9 @@
                                 </td>
                                 <td>{{ $products->brand->name }}</td>
                                 <td>{{ $products->price_roz }}p</td>
+                                @wholesaler
                                 <td>{{ $products->price_percent }}p</td>
+                                @endwholesaler
                                 <td>{{ $products->count }}</td>
                                 <td data-th="Subtotal" class="text-center">{{ ($products->price_percent * $products->count) }}p</td>
                             </tr>

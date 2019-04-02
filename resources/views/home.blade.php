@@ -3,6 +3,36 @@
 @section('content')
 <div class="container">
     <div class="row">
+        @auth
+            @if(\App\User::isBirthday())
+            <div class="ui tertiary black segment">
+                {{ Auth()->user()->name }}, поздравляем Вас с днем рождения! До <b><u>{{ $dateOptAvailable }}</u></b> доступна покупка по оптовым ценам.
+            </div>
+            @endif
+
+            @if(\App\User::checkDaysBirthday(env('BIRTHDAY_DATE_BEFORE')))
+                <div class="ui tertiary black segment">
+                    {{ Auth()->user()->name }}, c наступающим днем рождения! До <b><u>{{ $dateOptAvailable }}</u></b> доступна покупка по оптовым ценам.
+                </div>
+            @endif
+
+            @if(\App\User::checkDaysBirthday(env('BIRTHDAY_DATE_AFTER'), false, true))
+                <div class="ui tertiary black segment">
+                    {{ Auth()->user()->name }}, с прошедшим днем рождения! До <b><u>{{ $dateOptAvailable }}</u></b> доступна покупка по оптовым ценам.
+                </div>
+            @endif
+        @endauth
+
+        @if(Session::has('success-buy'))
+            <div class="ui grey message">
+                <i class="close icon"></i>
+                <div class="header">
+                    Заказ оформлен
+                </div>
+                Вы успешно оформили покупку! В ближайшее время с Вами свяжется менеджер.
+            </div>
+        @endif
+
         <div class="col-lg-12 col-md-12 col-sm-8 col-xs-9 bhoechie-tab-container">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
                 <div class="list-group">
