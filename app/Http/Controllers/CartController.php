@@ -97,9 +97,9 @@ class CartController extends Controller
     {
         $session = Session();
         $products = !empty($session->get('products')) ? $session->get('products') : array();
-
+        $user = Auth::user();
+        
         foreach($products as $product) {
-            $user = Auth::user();
             $instance = Cart::getInstanceProductType($product['type']);
             $brandId = $instance->where('tcae', $product['cae'])->first()->brand_id;
 
