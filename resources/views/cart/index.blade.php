@@ -19,7 +19,9 @@
                         <tr>
                             <th>Товар</th>
                             <th nowrap>Цена (Розница)</th>
+                            @wholesaler
                             <th nowrap>Цена (Оптом)</th>
+                            @endwholesaler
                             <th>Остаток</th>
                             <th>Кол-во</th>
                             <th class="text-center">Итого</th>
@@ -51,7 +53,9 @@
                                     <h4 class="cart-product-name">{{ $product[0]->name }}</h4>
                                 </td>
                                 <td>{{ $product[0]->price_roz }}p</td>
+                                @wholesaler
                                 <td>{{ $product[0]->price_opt }}p</td>
+                                @endwholesaler
                                 <td>
                                     @if($product[0]->quantity > 8)
                                         > 8
