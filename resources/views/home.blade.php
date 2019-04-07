@@ -335,7 +335,11 @@
                             <div class="best-name">
                                 <ul>
                                     <li>{{ \Illuminate\Support\Str::limit($tire->name, 30) }}</li>
+                                    @wholesaler
                                     <li class="best-price">{{ number_format($tire->price_opt, 0, '.', ' ') }} ₽</li>
+                                    @else
+                                    <li class="best-price">{{ number_format($tire->price_roz, 0, '.', ' ') }} ₽</li>
+                                    @endwholesaler
                                     <li class="text-muted">Остаток: {{ $tire->quantity }}</li>
                                 </ul>
                             </div>
@@ -356,7 +360,11 @@
                                 <div class="best-name">
                                     <ul>
                                         <li>{{ \Illuminate\Support\Str::limit($wheel->name, 30) }}</li>
+                                        @wholesaler
                                         <li class="best-price">{{ number_format($wheel->price_opt, 0, '.', ' ') }} ₽</li>
+                                        @else
+                                        <li class="best-price">{{ number_format($wheel->price_roz, 0, '.', ' ') }} ₽</li>
+                                        @endwholesaler
                                         <li class="text-muted">Остаток: {{ $wheel->quantity }}</li>
                                     </ul>
                                 </div>
