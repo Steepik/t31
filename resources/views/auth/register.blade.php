@@ -17,9 +17,9 @@
                                 <input id="name" type="text"
                                        class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('name') || Session::has('wrong_fio'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('name') ?? Session::get('wrong_fio') }}</strong>
                                     </span>
                                 @endif
                             </div>

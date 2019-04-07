@@ -813,7 +813,7 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 }
 
 .lazy.slider {
-    height: 500px;
+    height: auto;
     margin-bottom: 2em;
 }
 
@@ -836,6 +836,10 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 .slick-prev:before, .slick-next:before {
     font-size: 40px !important;
 }
+.slick-slide img {
+    max-width: 100%;
+    height: auto;
+}
 @media (max-width:767px){
     #footer h5 {
         padding-left: 0;
@@ -843,11 +847,20 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
         padding-bottom: 0px;
         margin-bottom: 10px;
     }
+    .lazy.slider {
+        display: none;
+    }
 }
 /** RESPONSIVE **/
 @media screen and (min-width: 1024px) {
     .table-responsive {
         overflow-x: hidden;
+    }
+    .slick-next {
+        right: 50px!important;
+    }
+    .slick-prev {
+        left: 50px !important;
     }
 }
 @media (max-width: 768px) {

@@ -62,6 +62,19 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        if (count(explode(' ', $data['name'])) != 3) {
+            $error = \Illuminate\Validation\ValidationException::withMessages([
+                'name' => ['Введите корректное ФИО например: Петров Петр Петрович'],
+            ]);
+
+            throw $error;
+        }
+
+        $customMessages = [
+            'phone.unique' => 'Телефон уже занят.',
+            'email.unique' => 'Email уже ханят',
+        ];
+
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -70,8 +83,8 @@ class RegisterController extends Controller
             'legal_name' => 'sometimes|required',
             'inn' => 'sometimes|required|max:12|min:10',
             'city' => 'required',
-            'phone' => 'required',
-        ]);
+            'phone' => 'required|unique:users',
+        ], $customMessages);
     }
 
     /**
