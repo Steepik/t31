@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" @if(request()->route()->getName() == 'home') style="height: auto;" @endif>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +25,9 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('/slick/slick.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/slick/slick-theme.css') }}">
+
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -41,10 +44,10 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/53121700" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 </head>
-<body class="home-background">
+<body class="home-background" @if(request()->route()->getName() == 'home') style="height: auto;" @endif>
     <div id="app">
         <div id="oveflow-bg"><div id="main-bg-wrapper"></div></div>
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top" @if(request()->route()->getName() == 'home') style="margin-bottom:0;" @endif>
             <div class="container">
                 <div class="navbar-header">
                     <a href="{{ route('home') }}"><button class="pull-left collapse-btn navbar-toggle"><i class="home icon colored"></i></button></a>
@@ -162,6 +165,18 @@
                 </div>
             </div>
         </nav>
+
+       @if(request()->route()->getName() == 'home')
+        <div class="lazy slider">
+            <div>
+                <img data-lazy="{{ asset('/img/slider/1.jpeg') }}">
+            </div>
+            <div>
+                <img data-lazy="{{ asset('/img/slider/2.jpeg') }}">
+            </div>
+        </div>
+        @endif
+
         @yield('content')
     </div>
     <!-- The Modal -->
@@ -170,7 +185,6 @@
         <img src="" class="modal-content" id="img01">
         <div id="caption"></div>
     </div>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
@@ -178,6 +192,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/i18n/datepicker.ru-RU.min.js"></script>
+
+    <script src="{{ asset('/slick/slick.min.js') }}" type="text/javascript" charset="utf-8"></script>
 
     <script src="{{ asset('js/common.js') }}"></script>
 </body>

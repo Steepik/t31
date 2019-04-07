@@ -8,6 +8,17 @@ $(document).ready(function() {
         language: 'ru-RU',
     });
 
+    $(".lazy").slick({
+        infinite: false,
+        lazyLoad: 'ondemand',
+        arrows: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 6000,
+        swipe: false,
+    });
+
     // Get the modal
     var modal = $('#myModal');
 
