@@ -56,6 +56,7 @@
                     @endauth
                     <a href="{{ route('tires') }}" class="pull-left collapse-btn"><button class="navbar-toggle">Шины</button></a>
                     <a href="{{ route('wheels') }}" class="pull-left collapse-btn"><button class="navbar-toggle">Диски</button></a>
+                    <a href="{{ route('contact') }}" class="pull-left collapse-btn"><button class="navbar-toggle">Контакты</button></a>
                     <a href="{{ route('cart') }}">
                         <button class="navbar-toggle">
                             <i class="shopping cart icon colored"></i>
