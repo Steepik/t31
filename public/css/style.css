@@ -309,7 +309,7 @@ button.add-to-cart {
         position: static;
         left: auto !important;
         top: auto !important;
-        margin: 20px 0 0 !important;
+        margin: -20px 0 0 !important;
     }
 }
 .navbar.navbar-default.navbar-static-top {
@@ -318,6 +318,8 @@ button.add-to-cart {
     border-bottom: 2px solid #f18431;
 }
 .home-background {
+    background-attachment:fixed;
+    height:100%;
     background-color: #eeeeee; /* For browsers that do not support gradients */
     background-image: linear-gradient(#b5b5b5, #eeeeee); /* Standard syntax (must be last) */
 }
@@ -840,6 +842,11 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     max-width: 100%;
     height: auto;
 }
+@media (max-height: 768px) {
+    .login-form.register {
+        margin-top: -215px;
+    }
+}
 @media (max-width:767px){
     #footer h5 {
         padding-left: 0;
@@ -864,6 +871,9 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     }
 }
 @media (max-width: 768px) {
+    .panel {
+        margin-top:20px;
+    }
     .navbar-brand img{
         display: none;
     }
@@ -874,7 +884,7 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
         display: inline-block;
     }
     .colored {
-        color: #fff;
+        color: #000;
     }
     .ui.labeled.button.cart-info, .dropdown.profile-btn {
         display: none;
@@ -886,7 +896,7 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
         display: none;
     }
     .navbar-header a {
-        color: #fff;
+        color: #000;
     }
     .cart-products-count {
         font-size: 0.7em;

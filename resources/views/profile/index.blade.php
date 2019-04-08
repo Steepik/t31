@@ -18,7 +18,11 @@
                                                     <div class="content">
                                                         <div class="header">
                                                             <img class="ui avatar image" src="{{ asset('/img/people.svg') }}">
-                                                            {{ mb_strtoupper(mb_substr($user->name, 0, 1)) . mb_substr($user->name, 1) }}
+                                                            Вы
+                                                        </div>
+                                                        <div class="meta">
+                                                            <span class="right floated time"> {{ mb_strtoupper(mb_substr($user->name, 0, 1)) . mb_substr($user->name, 1) }}</span>
+                                                            <span class="category">ФИО:</span>
                                                         </div>
                                                         <div class="meta">
                                                             <span class="right floated time">{{ $user->created_at->format('d.m.Y') }}</span>

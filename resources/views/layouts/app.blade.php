@@ -51,7 +51,9 @@
             <div class="container">
                 <div class="navbar-header">
                     <a href="{{ route('home') }}"><button class="pull-left collapse-btn navbar-toggle"><i class="home icon colored"></i></button></a>
+                    @auth
                     <a href="{{ route('order-list') }}" class="pull-left collapse-btn"><button class="navbar-toggle">Заказы</button></a>
+                    @endauth
                     <a href="{{ route('tires') }}" class="pull-left collapse-btn"><button class="navbar-toggle">Шины</button></a>
                     <a href="{{ route('wheels') }}" class="pull-left collapse-btn"><button class="navbar-toggle">Диски</button></a>
                     <a href="{{ route('cart') }}">
@@ -85,13 +87,11 @@
                             @endauth
                             <li><a href="{{ route('tires') }}"><button class="ui silver-in basic button">Шины</button></a></li>
                             <li><a href="{{ route('wheels') }}"><button class="ui silver-in basic button">Диски</button></a></li>
+                            <li><a href="{{ route('contact') }}"><button class="ui silver-in basic button">Контакты</button></a></li>
                             @guest
                                 <li><a href="/login"><button class="ui silver-in basic button">Войти</button></a></li>
                                 <li><a href="/pre-register"><button class="ui silver-in basic button">Регистрация</button></a></li>
                             @endguest
-                            @auth
-                                <li><a href="{{ route('profile') }}"><button class="ui silver-in basic button">Личный кабинет</button></a></li>
-                            @endauth
                         </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -151,6 +151,7 @@
                                 @admin
                                 <a href="{{ route('control') }}" class="item"> <i class="cogs icon"></i> Панель управления</a>
                                 @endadmin
+                                <a href="{{ route('profile') }}" class="item"> <i class="user circle icon"></i> Личный кабинет</a>
                                 <a href="{{ route('logout') }}" class="item"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"> <i class="sign out alternate icon"></i> Выход</a>

@@ -28,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::if('wholesaler', function() {
+            if (Auth::check() && Auth::user()->is_admin)
+                return true;
 
             if (Auth::check())
                 return Auth::user()->is_wholesaler || User::isAvailableToShowOptPriceForRoz();

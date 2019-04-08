@@ -105,3 +105,8 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
 Route::middleware(['auth', 'is_admin'])->group(function(){
     Route::get('/control/autopiter', 'Admin\ImportController@autopiter');
 });
+
+// *** PAGES ***///
+ROute::get('/contact', function() {
+    return view('pages.contact');
+})->name('contact');
