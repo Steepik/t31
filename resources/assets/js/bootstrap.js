@@ -49,7 +49,7 @@ import swal from 'sweetalert'
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from 'laravel-echo'
+/*import Echo from 'laravel-echo'
 
 window.Pusher = require('pusher-js');
 
@@ -58,4 +58,4 @@ window.Echo = new Echo({
     key: '5b2f07a13b456b7f0f8d',
     cluster: 'eu',
     encrypted: true
-});
+});*/
