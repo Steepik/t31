@@ -18,7 +18,7 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('/img/favicon.ico') }}">
     <!-- Styles -->
-    <link href="{{ asset('css/app.css?ver=') . env('APP_VERSION') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css?ver=') . config('app.version') }}" rel="stylesheet">
     <link href="{{ asset('css/semantic.min.css') }}" rel="stylesheet">
 
     @yield('css')
@@ -187,7 +187,7 @@
         <div id="caption"></div>
     </div>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js?ver=') . env('APP_VERSION') }}"></script>
+    <script src="{{ asset('js/app.js?ver=') . config('app.version') }}"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
     <script src="https://unpkg.com/imask"></script>
 
@@ -196,6 +196,6 @@
 
     <script src="{{ asset('/slick/slick.min.js') }}" type="text/javascript" charset="utf-8"></script>
 
-    <script src="{{ asset('js/common.js?ver=') . env('APP_VERSION') }}"></script>
+    <script src="{{ asset('js/common.js?ver=') . config('app.version') }}"></script>
 </body>
 </html>
