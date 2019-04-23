@@ -12,6 +12,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
@@ -47,7 +48,6 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         if($request->ajax()) {
-
             $session = Session();
             $tire_type = $request->type; // 1 - tires | 2 - trucks | 3 - special | 4 - wheels
             $product = Cart::getInstanceProductType($request->type);
@@ -61,14 +61,13 @@ class CartController extends Controller
 
             if($request->count <= $p_quantity and $request->count > 0) {
                 //if user added the same product just increase count
-                if(Cart::ExistTheSameProduct($p_info) !== null) {
+                if($session->has('products') && count($session->get('products')) > 0 && Cart::ExistTheSameProduct($p_info) !== null) {
                     $key = Cart::ExistTheSameProduct($p_info); //get product's key in array
                     $products = $session->get('products');
                     $products[$key]['count'] += $count;
 
                     Session::forget(['products']);
                     Session::put('products', $products);
-
                 } else {
                     //calculate total price, products count of all products in cart
                     if ($session->has('total_price')) {
@@ -87,6 +86,8 @@ class CartController extends Controller
 
                     $session->put('cart_products', count($session->get('products')));
                 }
+            } else {
+               return response()->json(['quantity' => 0]);
             }
 
             return response()->json(['quantity' => $p_quantity, 'price' => $p_price, $session->get('products'), 'cart_products' => count($session->get('products'))]);

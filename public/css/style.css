@@ -947,3 +947,6 @@ table {
 .pagination {
     border: 1px solid #a0a0a0 !important;
 }
+.form-add-to-cart.main .count-field {
+    width: 130px;
+}

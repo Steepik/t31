@@ -314,8 +314,8 @@
                     </div>
                     <div class="best-deals-block" style="text-align: center;">
                         @foreach($tires as $tire)
-                        <div class="best-product-block">
-                            <div class="best-image">
+                        <div class="best-product-block panel panel-default">
+                            <div class="best-image panel-body">
                                 <div class="image-season">
                                     @if($tire->tseason == 'Зимняя')
                                         <img src="https://torgshina.com/image/icons/winter.png" />
@@ -341,6 +341,19 @@
                                     <li class="best-price">{{ number_format($tire->price_roz, 0, '.', ' ') }} ₽</li>
                                     @endwholesaler
                                     <li class="text-muted">Остаток: {{ $tire->quantity > 8 ? '>8' : $tire->quantity }}</li>
+                                        <li>
+                                            <form onsubmit="return false;" method="post" action="{{ route('addtocart') }}" class="form-add-to-cart main">
+                                                <div class="ui action input">
+                                                    <input type="number" min="1" name="count" class="count-field" id="count" placeholder="Количество">
+                                                    <button class="ui silver icon button add-to-cart">
+                                                        <i class="add to cart icon"></i>
+                                                    </button>
+                                                </div>
+                                                <input type="hidden" name="product_id" id="product_id" value="{{ $tire->tcae }}">
+                                                <input type="hidden" name="type" id="type" value="1">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
                                 </ul>
                             </div>
                         </div>
@@ -353,8 +366,8 @@
                     </div>
                     <div class="best-deals-block" style="text-align: center;">
                         @foreach($wheels as $wheel)
-                            <div class="best-product-block">
-                                <div class="best-image">
+                            <div class="best-product-block panel panel-default">
+                                <div class="best-image panel-body">
                                     <img src="{{ asset('images/' . $wheel->image) }}.jpg" alt="{{ $wheel->name }}" class="ui tiny rounded image" />
                                 </div>
                                 <div class="best-name">
@@ -366,6 +379,19 @@
                                         <li class="best-price">{{ number_format($wheel->price_roz, 0, '.', ' ') }} ₽</li>
                                         @endwholesaler
                                         <li class="text-muted">Остаток: {{ $wheel->quantity > 8 ? '>8' : $wheel->quantity}}</li>
+                                            <li>
+                                                <form onsubmit="return false;" method="post" action="{{ route('addtocart') }}" class="form-add-to-cart main">
+                                                    <div class="ui action input">
+                                                        <input type="number" min="1" name="count" class="count-field" id="count" placeholder="Количество">
+                                                        <button class="ui silver icon button add-to-cart">
+                                                            <i class="add to cart icon"></i>
+                                                        </button>
+                                                    </div>
+                                                    <input type="hidden" name="product_id" id="product_id" value="{{ $wheel->tcae }}">
+                                                    <input type="hidden" name="type" id="type" value="4">
+                                                    {{ csrf_field() }}
+                                                </form>
+                                            </li>
                                     </ul>
                                 </div>
                             </div>
