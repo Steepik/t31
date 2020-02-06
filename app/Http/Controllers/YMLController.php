@@ -64,7 +64,7 @@ class YMLController extends Controller
                     <min-quantity>1</min-quantity> 
                     <vendor>' . $tire->brand->name . '</vendor>
                     <vendorCode>' . $tire->tcae . '</vendorCode>
-                    <url>' . htmlspecialchars('https://tyre31.ru/tires/podbor?type=1&twidth=' . $tire->twidth . '&tprofile=' . $tire->tprofile . '&tdiameter='. $tire->tdiameter . '&tseason=&brand_id=' . $tire->brand->id . '&tcae=') . '</url>
+                    <url>' . htmlspecialchars('https://tyre31.ru/tires/podbor?type=1&twidth=' . $tire->twidth . '&tprofile=' . $tire->tprofile . '&tdiameter='. $tire->tdiameter . '&tseason=&brand_id=' . $tire->brand->id . '&tcae=' . $tire->tcae) . '</url>
                     <price>' . $tire->price_roz . '</price>
                     <currencyId>RUR</currencyId>
                     <categoryId>' . $typeCategory  . '</categoryId>
@@ -97,7 +97,7 @@ class YMLController extends Controller
                     <min-quantity>1</min-quantity> 
                     <vendor>' . htmlspecialchars($wheel->brand->name) . '</vendor>
                     <vendorCode>1</vendorCode>
-                    <url>' . htmlspecialchars('https://tyre31.ru/wheels/podbor?type=4&twidth=' . $wheel->twidth . '&tdiameter=' . $wheel->twidth . '&hole_count=' . $wheel->hole_count . '&pcd=' . $wheel->pcd . '&et=' . $wheel->et . '&dia=' . $wheel->dia . '&brand_id='  . $wheel->brand->id .  '&d_type=&tcae=') . '</url>
+                    <url>' . htmlspecialchars('https://tyre31.ru/wheels/podbor?type=4&twidth=' . $wheel->twidth . '&tdiameter=' . $wheel->twidth . '&hole_count=' . $wheel->hole_count . '&pcd=' . $wheel->pcd . '&et=' . $wheel->et . '&dia=' . $wheel->dia . '&brand_id='  . $wheel->brand->id .  '&d_type=&tcae=' . $wheel->tcae) . '</url>
                     <price>' . $wheel->price_roz . '</price>
                     <currencyId>RUR</currencyId>
                     <categoryId>' . $wheelCategory  . '</categoryId>
