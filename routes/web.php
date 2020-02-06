@@ -106,7 +106,10 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
     Route::get('/control/autopiter', 'Admin\ImportController@autopiter');
 });
 
-// *** PAGES ***///
-ROute::get('/contact', function() {
+// *** PAGES ***//
+Route::get('/contact', function() {
     return view('pages.contact');
 })->name('contact');
+
+// *** YML FOR YANDEX MARKET ***//
+Route::get('yandex-price-list', 'YMLController@index');
