@@ -56,21 +56,21 @@ class YMLController extends Controller
             }
 
             $xml .= '
+                 <delivery-options>
+                     <option cost="0" days="1"/>
+                 </delivery-options>
                  <offer id="' . $tire->id . '">
                     <name>' . $tire->name . '</name>
                     <min-quantity>1</min-quantity> 
                     <vendor>' . $tire->brand->name . '</vendor>
                     <vendorCode>' . $tire->tcae . '</vendorCode>
-                    <url/>
+                    <url>https://tyre31.ru/tires/podbor?type=1&twidth=&tprofile=&tdiameter=&tseason=&brand_id=&tcae=</url>
                     <price>' . $tire->price_roz . '</price>
                     <currencyId>RUR</currencyId>
                     <categoryId>' . $typeCategory  . '</categoryId>
                     <delivery>true</delivery>
                     <pickup>true</pickup>
                     <store>true</store>
-                    <delivery-options>
-                        <option cost="0" days="1"/>
-                    </delivery-options>
                     <param name="Ширина">' . (int)$tire->twidth . '</param>
                     <param name="Профиль">' . (int)$tire->tprofile . '</param>
                     <param name="Диаметр">' . (int)$tire->tdiameter . '</param>
@@ -92,21 +92,21 @@ class YMLController extends Controller
             $wheelId = count($tireList) + $iteration;
             $wheelCategory = $wheel->type == 'Литой' ? self::CATEGORY_LITOY_WHEEL : self::CATEGORY_SHTAMP_WHEEL;
             $xml .= '
+                 <delivery-options>
+                     <option cost="0" days="1"/>
+                 </delivery-options>
                  <offer id="' . $wheelId . '">
                     <name>' . $wheel->name . '</name>
                     <min-quantity>1</min-quantity> 
                     <vendor>' . htmlspecialchars($wheel->brand->name) . '</vendor>
                     <vendorCode>1</vendorCode>
-                    <url/>
+                    <url>https://tyre31.ru/wheels/podbor?type=4&twidth=&tdiameter=&hole_count=&pcd=&et=&dia=&brand_id=&d_type=&tcae=</url>
                     <price>' . $wheel->price_roz . '</price>
                     <currencyId>RUR</currencyId>
                     <categoryId>' . $wheelCategory  . '</categoryId>
                     <delivery>true</delivery>
                     <pickup>true</pickup>
                     <store>true</store>
-                    <delivery-options>
-                        <option cost="0" days="1"/>
-                    </delivery-options>
                     <param name="Ширина">' . $wheel->twidth . '</param>
                     <param name="Диаметр">' . $wheel->tdiameter . '</param>
                     <param name="Кол-во отверстий">' . (int)$wheel->hole_count . '</param>
