@@ -41,7 +41,10 @@ class YMLController extends Controller
                     <category id="' . self::CATEGORY_LITOY_WHEEL . '" parentId="' . self::CATEGORY_WHEEL . '">Литые диски</category>
                     <category id="' . self::CATEGORY_SHTAMP_WHEEL . '" parentId="' . self::CATEGORY_WHEEL . '">Штампованные диски</category>
                 </categories>';
-        $xml .= "<offers>";
+        $xml .= '<delivery-options>
+                     <option cost="0" days="1"/>
+                 </delivery-options>
+                 <offers>';
 
         // Tires
         $tireList = Tire::all();
@@ -56,9 +59,6 @@ class YMLController extends Controller
             }
 
             $xml .= '
-                 <delivery-options>
-                     <option cost="0" days="1"/>
-                 </delivery-options>
                  <offer id="' . $tire->id . '">
                     <name>' . $tire->name . '</name>
                     <min-quantity>1</min-quantity> 
@@ -92,9 +92,6 @@ class YMLController extends Controller
             $wheelId = count($tireList) + $iteration;
             $wheelCategory = $wheel->type == 'Литой' ? self::CATEGORY_LITOY_WHEEL : self::CATEGORY_SHTAMP_WHEEL;
             $xml .= '
-                 <delivery-options>
-                     <option cost="0" days="1"/>
-                 </delivery-options>
                  <offer id="' . $wheelId . '">
                     <name>' . $wheel->name . '</name>
                     <min-quantity>1</min-quantity> 
