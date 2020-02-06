@@ -64,7 +64,7 @@ class YMLController extends Controller
                     <min-quantity>1</min-quantity> 
                     <vendor>' . $tire->brand->name . '</vendor>
                     <vendorCode>' . $tire->tcae . '</vendorCode>
-                    <url>https://tyre31.ru/tires/podbor?type=1&twidth=&tprofile=&tdiameter=&tseason=&brand_id=&tcae=</url>
+                    <url>' . htmlspecialchars('https://tyre31.ru/tires/podbor?type=1&twidth=&tprofile=&tdiameter=&tseason=&brand_id=&tcae=') . '</url>
                     <price>' . $tire->price_roz . '</price>
                     <currencyId>RUR</currencyId>
                     <categoryId>' . $typeCategory  . '</categoryId>
@@ -100,7 +100,7 @@ class YMLController extends Controller
                     <min-quantity>1</min-quantity> 
                     <vendor>' . htmlspecialchars($wheel->brand->name) . '</vendor>
                     <vendorCode>1</vendorCode>
-                    <url>https://tyre31.ru/wheels/podbor?type=4&twidth=&tdiameter=&hole_count=&pcd=&et=&dia=&brand_id=&d_type=&tcae=</url>
+                    <url>' . htmlspecialchars('https://tyre31.ru/wheels/podbor?type=4&twidth=&tdiameter=&hole_count=&pcd=&et=&dia=&brand_id=&d_type=&tcae=') . '</url>
                     <price>' . $wheel->price_roz . '</price>
                     <currencyId>RUR</currencyId>
                     <categoryId>' . $wheelCategory  . '</categoryId>
