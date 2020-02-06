@@ -46,6 +46,8 @@ class YMLController extends Controller
         // Tires
         $tireList = Tire::all();
         foreach ($tireList as $tire) {
+            if ($tire->price_roz <= 0) continue;
+
             $typeCategory = $tire->tseason == 'Летняя' ? self::CATEGORY_SUMMER_TIRE : self::CATEGORY_WINTER_TIRE;
             $type = $tire->spike == 1 ? 'Шипованная' : $tire->tseason;
 
@@ -67,7 +69,7 @@ class YMLController extends Controller
                     <pickup>true</pickup>
                     <store>true</store>
                     <delivery-options>
-                        <option cost="0" days="0"/>
+                        <option cost="0" days="1"/>
                     </delivery-options>
                     <param name="Ширина">' . (int)$tire->twidth . '</param>
                     <param name="Профиль">' . (int)$tire->tprofile . '</param>
@@ -83,6 +85,8 @@ class YMLController extends Controller
         $wheelList = Wheel::all();
         $iteration = 0;
         foreach ($wheelList as $wheel) {
+            if ($wheel->price_roz <= 0) continue;
+
             $iteration++;
 
             $wheelId = count($tireList) + $iteration;
@@ -101,7 +105,7 @@ class YMLController extends Controller
                     <pickup>true</pickup>
                     <store>true</store>
                     <delivery-options>
-                        <option cost="0" days="0"/>
+                        <option cost="0" days="1"/>
                     </delivery-options>
                     <param name="Ширина">' . $wheel->twidth . '</param>
                     <param name="Диаметр">' . $wheel->tdiameter . '</param>
