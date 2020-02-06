@@ -47,7 +47,7 @@ class YMLController extends Controller
                  <offers>';
 
         // Tires
-        $tireList = Tire::all();
+        $tireList = Tire::distinct()->get();
         foreach ($tireList as $tire) {
             if ($tire->price_roz <= 0) continue;
 
@@ -82,7 +82,7 @@ class YMLController extends Controller
         }
 
         // Wheels
-        $wheelList = Wheel::all();
+        $wheelList = Wheel::distinct()->get();
         $iteration = 0;
         foreach ($wheelList as $wheel) {
             if ($wheel->price_roz <= 0) continue;
