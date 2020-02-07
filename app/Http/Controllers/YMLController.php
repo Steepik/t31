@@ -59,7 +59,7 @@ class YMLController extends Controller
             }
 
             $xml .= '
-                 <offer id="' . $tire->id . '">
+                 <offer id="' . $tire->id . '" type="tire">
                     <name>' . $tire->name . '</name>
                     <min-quantity>4</min-quantity> 
                     <vendor>' . htmlspecialchars($tire->brand->name) . '</vendor>
@@ -84,16 +84,11 @@ class YMLController extends Controller
 
         // Wheels
         $wheelList = Wheel::distinct()->where('quantity', '>', 0)->get();
-        $iteration = 0;
         foreach ($wheelList as $wheel) {
             if ($wheel->price_roz <= 0) continue;
-
-            $iteration++;
-
-            $wheelId = count($tireList) + $iteration;
             $wheelCategory = $wheel->type == 'Литой' ? self::CATEGORY_LITOY_WHEEL : self::CATEGORY_SHTAMP_WHEEL;
             $xml .= '
-                 <offer id="' . $wheelId . '">
+                 <offer id="' . $wheel->id . '" type="wheel">
                     <name>' . $wheel->name . '</name>
                     <min-quantity>4</min-quantity> 
                     <vendor>' . htmlspecialchars($wheel->brand->name) . '</vendor>
