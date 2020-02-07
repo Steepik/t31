@@ -317,6 +317,9 @@ button.add-to-cart {
     border: none;
     border-bottom: 2px solid #f18431;
 }
+.nav.navbar-nav.navbar-left li a button {
+    font-size: 13px;
+}
 .home-background {
     background-attachment:fixed;
     height:100%;
