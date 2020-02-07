@@ -116,7 +116,7 @@
                                                             @endphp
                                                             <img src="//torgshina.com/image/manufacturer/{{ $image_id->manufacturer_id ?? '' }}.jpg" alt="{{ $wheel->brand->name }}">
                                                         </div><br/>
-                                                        <span class="podbor-prod-name">{{ $wheel->name }}</span>
+                                                        <a href="/wheels/{{ $wheel->id }}"><span class="podbor-prod-name">{{ $wheel->name }}</span></a>
                                                         <div class="sub header">{{ $wheel->tcae }}
                                                         </div>
                                                     </div>

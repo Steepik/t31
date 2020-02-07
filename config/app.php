@@ -25,7 +25,7 @@ return [
    |
    */
 
-    'version' => '1.3',
+    'version' => '1.4',
 
     /*
     |--------------------------------------------------------------------------
@@ -180,6 +180,7 @@ return [
          * Package Service Providers...
          */
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Eusonlito\LaravelMeta\MetaServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -243,7 +244,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-
+        'Meta'    => Eusonlito\LaravelMeta\Facade::class,
     ],
 
 ];

@@ -950,3 +950,32 @@ table {
 .form-add-to-cart.main .count-field {
     width: 130px;
 }
+#single-image {
+    max-width: 180px;
+}
+#single-right-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+#single-right-block ul {
+    list-style: none;
+    font-size: 18px;
+    font-weight: 400;
+}
+#single-right-block ul li {
+    display: block;
+    margin-top:5px;
+    padding: 5px;
+    background: #f8f8f8;
+}
+#block-image {
+    position: relative;
+    display: block;
+}
+#block-image .image-season {
+    position: absolute;
+    top:0;
+    left:0;
+}

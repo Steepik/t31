@@ -23,6 +23,13 @@ class TireController extends Controller
         return view('tires.index', compact('brands_list'));
     }
 
+    public function show($id)
+    {
+        $tire = Tire::findOrFail($id);
+
+        return view('tires.single', ['tire' => $tire]);
+    }
+
     /**
      * Product selection
      *

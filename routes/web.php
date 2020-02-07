@@ -31,6 +31,8 @@ Route::get('/order-m/{id}', 'OrderController@showMergedOrder')->name('order-m');
 Route::post('/add_comment', 'OrderController@addComment')->name('add_comment');
 Route::get('/bill/{id}', 'OrderController@orderBill')->name('bill');
 Route::get('/bill-m/{id}', 'OrderController@orderMergeBill')->name('bill-m');
+Route::get('/tires/{id}', 'TireController@show');
+Route::get('/wheels/{id}', 'WheelController@show');
 
 //ROUTE USE FOR SELECT BY CAR
 Route::get('/car/{fvendor}/{fcar}/{fyear}/{fmod}', 'SelByCar@index')->name('bycar');
@@ -107,9 +109,9 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
 });
 
 // *** PAGES ***//
-Route::get('/contact', function() {
-    return view('pages.contact');
-})->name('contact');
+Route::get('/contact', 'PageController@contact')->name('contact');
+// *** PAGES ***//
+Route::get('/delivery', 'PageController@delivery')->name('delivery');
 
 // *** YML FOR YANDEX MARKET ***//
 Route::get('yandex-price-list', 'YMLController@index');

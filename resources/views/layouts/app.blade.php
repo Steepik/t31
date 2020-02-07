@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ !empty(Meta::get('title')) ? Meta::get('title') :  config('app.name', 'Laravel') }}</title>
 
     <!-- Meta -->
     <meta name="keywords" content="оптовые цены, розничные цены, шины опт белгород, диски опт белгород">
@@ -57,6 +57,7 @@
                     <a href="{{ route('tires') }}" class="pull-left collapse-btn"><button class="navbar-toggle">Шины</button></a>
                     <a href="{{ route('wheels') }}" class="pull-left collapse-btn"><button class="navbar-toggle">Диски</button></a>
                     <a href="{{ route('contact') }}" class="pull-left collapse-btn"><button class="navbar-toggle">Контакты</button></a>
+                    <a href="{{ route('delivery') }}" class="pull-left collapse-btn"><button class="navbar-toggle">Доставка</button></a>
                     <a href="{{ route('cart') }}">
                         <button class="navbar-toggle">
                             <i class="shopping cart icon colored"></i>
@@ -89,6 +90,7 @@
                             <li><a href="{{ route('tires') }}"><button class="ui silver-in basic button">Шины</button></a></li>
                             <li><a href="{{ route('wheels') }}"><button class="ui silver-in basic button">Диски</button></a></li>
                             <li><a href="{{ route('contact') }}"><button class="ui silver-in basic button">Контакты</button></a></li>
+                            <li><a href="{{ route('delivery') }}"><button class="ui silver-in basic button">Доставка</button></a></li>
                             @guest
                                 <li><a href="/login"><button class="ui silver-in basic button">Войти</button></a></li>
                                 <li><a href="/pre-register"><button class="ui silver-in basic button">Регистрация</button></a></li>

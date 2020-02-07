@@ -19,6 +19,13 @@ class WheelController extends Controller
         return view('wheels.index', compact('brands_list'));
     }
 
+    public function show($id)
+    {
+        $wheel = Wheel::findOrFail($id);
+
+        return view('wheels.single', ['wheel' => $wheel]);
+    }
+
     public function podbor(Request $request)
     {
         if (!$request->all()) {

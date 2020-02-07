@@ -47,7 +47,7 @@ class YMLController extends Controller
                  <offers>';
 
         // Tires
-        $tireList = Tire::distinct()->get();
+        $tireList = Tire::distinct()->where('quantity', '>', 0)->get();
         foreach ($tireList as $tire) {
             if ($tire->price_roz <= 0) continue;
 
@@ -61,28 +61,29 @@ class YMLController extends Controller
             $xml .= '
                  <offer id="' . $tire->id . '">
                     <name>' . $tire->name . '</name>
-                    <min-quantity>1</min-quantity> 
-                    <vendor>' . $tire->brand->name . '</vendor>
-                    <vendorCode>' . $tire->tcae . '</vendorCode>
-                    <url>' . htmlspecialchars('https://tyre31.ru/tires/podbor?type=1&twidth=' . $tire->twidth . '&tprofile=' . $tire->tprofile . '&tdiameter='. $tire->tdiameter . '&tseason=&brand_id=' . $tire->brand->id . '&tcae=' . $tire->tcae) . '</url>
+                    <min-quantity>4</min-quantity> 
+                    <vendor>' . htmlspecialchars($tire->brand->name) . '</vendor>
+                    <vendorCode>' . htmlspecialchars($tire->tcae) . '</vendorCode>
+                    <url>https://tyre31.ru/tires/' . $tire->id . '</url>
                     <price>' . $tire->price_roz . '</price>
                     <currencyId>RUR</currencyId>
                     <categoryId>' . $typeCategory  . '</categoryId>
                     <delivery>true</delivery>
                     <pickup>true</pickup>
                     <store>true</store>
+                    <sales_notes>Минимальный заказ — 4 штуки</sales_notes>
                     <param name="Ширина">' . (int)$tire->twidth . '</param>
                     <param name="Профиль">' . (int)$tire->tprofile . '</param>
                     <param name="Диаметр">' . (int)$tire->tdiameter . '</param>
                     <param name="Индекс нагрузки">' . $tire->load_index . '</param>
                     <param name="Индекс скорости">' . $tire->speed_index . '</param>
                     <param name="Тип">' . $type . '</param>
-                    <param name="Модель">' . $tire->model . '</param>
+                    <param name="Модель">' . htmlspecialchars($tire->model) . '</param>
                 </offer>';
         }
 
         // Wheels
-        $wheelList = Wheel::distinct()->get();
+        $wheelList = Wheel::distinct()->where('quantity', '>', 0)->get();
         $iteration = 0;
         foreach ($wheelList as $wheel) {
             if ($wheel->price_roz <= 0) continue;
@@ -94,23 +95,24 @@ class YMLController extends Controller
             $xml .= '
                  <offer id="' . $wheelId . '">
                     <name>' . $wheel->name . '</name>
-                    <min-quantity>1</min-quantity> 
+                    <min-quantity>4</min-quantity> 
                     <vendor>' . htmlspecialchars($wheel->brand->name) . '</vendor>
-                    <vendorCode>1</vendorCode>
-                    <url>' . htmlspecialchars('https://tyre31.ru/wheels/podbor?type=4&twidth=' . $wheel->twidth . '&tdiameter=' . $wheel->twidth . '&hole_count=' . $wheel->hole_count . '&pcd=' . $wheel->pcd . '&et=' . $wheel->et . '&dia=' . $wheel->dia . '&brand_id='  . $wheel->brand->id .  '&d_type=&tcae=' . $wheel->tcae) . '</url>
+                    <vendorCode>' . htmlspecialchars($wheel->tcae)  . '</vendorCode>
+                    <url>https://tyre31.ru/wheels/' . $wheel->id . '</url>
                     <price>' . $wheel->price_roz . '</price>
                     <currencyId>RUR</currencyId>
                     <categoryId>' . $wheelCategory  . '</categoryId>
                     <delivery>true</delivery>
                     <pickup>true</pickup>
                     <store>true</store>
+                    <sales_notes>Минимальный заказ — 4 штуки</sales_notes>
                     <param name="Ширина">' . $wheel->twidth . '</param>
                     <param name="Диаметр">' . $wheel->tdiameter . '</param>
                     <param name="Кол-во отверстий">' . (int)$wheel->hole_count . '</param>
                     <param name="PCD">' . $wheel->pcd . '</param>
                     <param name="ET">' . $wheel->et . '</param>
                     <param name="DIA">' . $wheel->dia . '</param>
-                    <param name="Модель">' . $wheel->model . '</param>
+                    <param name="Модель">' . htmlspecialchars($wheel->model) . '</param>
                 </offer>';
         }
 

@@ -236,7 +236,7 @@
                                                         <img src="//torgshina.com/image/manufacturer/{{ $image_id->manufacturer_id ?? ''}}.jpg" alt="{{ $tire->brand->name }}">
                                                     @endif
                                                 </div><br/>
-                                                <span class="podbor-prod-name">{{ $tire->name }}</span>
+                                                <a href="/tires/{{ $tire->id }}"><span class="podbor-prod-name">{{ $tire->name }}</span></a>
                                                 <div class="podbor-cae">{{ $tire->tcae }}
                                                 </div>
                                             </div>
