@@ -59,7 +59,7 @@ class YMLController extends Controller
             }
 
             $xml .= '
-                 <offer id="' . $tire->id . '" type="tire">
+                 <offer id="tire' . $tire->id . '">
                     <name>' . $tire->name . '</name>
                     <min-quantity>4</min-quantity> 
                     <vendor>' . htmlspecialchars($tire->brand->name) . '</vendor>
@@ -88,7 +88,7 @@ class YMLController extends Controller
             if ($wheel->price_roz <= 0) continue;
             $wheelCategory = $wheel->type == 'Литой' ? self::CATEGORY_LITOY_WHEEL : self::CATEGORY_SHTAMP_WHEEL;
             $xml .= '
-                 <offer id="' . $wheel->id . '" type="wheel">
+                 <offer id="wheel' . $wheel->id . '">
                     <name>' . $wheel->name . '</name>
                     <min-quantity>4</min-quantity> 
                     <vendor>' . htmlspecialchars($wheel->brand->name) . '</vendor>
