@@ -71,6 +71,7 @@ class YMLController extends Controller
                     <delivery>true</delivery>
                     <pickup>true</pickup>
                     <store>true</store>
+                    <picture>' . asset('images/' . $tire->image) . '.jpg</picture>
                     <sales_notes>Минимальный заказ — 4 штуки</sales_notes>
                     <param name="Ширина">' . (int)$tire->twidth . '</param>
                     <param name="Профиль">' . (int)$tire->tprofile . '</param>
@@ -100,6 +101,7 @@ class YMLController extends Controller
                     <delivery>true</delivery>
                     <pickup>true</pickup>
                     <store>true</store>
+                    <picture>' . asset('images/' . $wheel->image) . '.jpg</picture>
                     <sales_notes>Минимальный заказ — 4 штуки</sales_notes>
                     <param name="Ширина">' . $wheel->twidth . '</param>
                     <param name="Диаметр">' . $wheel->tdiameter . '</param>
