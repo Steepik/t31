@@ -68,6 +68,9 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
     Route::get('control/moder/pcheck', 'Admin\AdminController@productModeration')->name('pcheck');
     Route::post('control/moder/productAction', 'Admin\AdminController@productAction');
     Route::get('control/buyers', 'Admin\BuyerController@index')->name('buyers');
+    Route::get('control/texts', 'Admin\TextController@index')->name('texts');
+    Route::get('control/texts/{id}', 'Admin\TextController@show')->name('text_edit');
+    Route::post('control/texts', 'Admin\TextController@save')->name('text_save');
     Route::get('control/orders', 'Admin\OrderController@index')->name('admin_order');
     Route::put('control/order_change/{id}', 'Admin\OrderController@update')->name('order_change');
     Route::post('control/orders/changeOrderStatus', 'Admin\OrderController@changeOrderStatus');
@@ -110,8 +113,9 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
 
 // *** PAGES ***//
 Route::get('/contact', 'PageController@contact')->name('contact');
-// *** PAGES ***//
 Route::get('/delivery', 'PageController@delivery')->name('delivery');
+Route::get('/sezonnoe-hranenie', 'PageController@season_save')->name('season_save');
+Route::get('/pravka-diskov', 'PageController@repair_wheels')->name('repair_wheels');
 
 // *** YML FOR YANDEX MARKET ***//
 Route::get('yandex-price-list', 'YMLController@index');

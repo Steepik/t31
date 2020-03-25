@@ -407,18 +407,18 @@
             <div class="col-md-12">
                 <div class="panel silver panel-default">
                     <div class="panel-body">
-                        <h1 class="text-center">"Каретный двор" - интернет-магазин по продаже шин, дисков в Белгороде</h1>
-                        <br/>
-                        <p>Купить <a href="{{ url('/tires/podbor?type=1&tseason=Летняя') }}">летнюю резину</a> возможно в нашем магазине "Каретный двор". С наступлением теплого периода, покупка летних автошин в нашем магазине - не проблема".
-                        </p>
-                        <p>Большой ассортимент <a href="{{ url('tires') }}">шин</a> и <a href="{{ url('wheels') }}">дисков</a> в Белгороде по <b>оптовым</b> или <b>розничным</b> ценам.
-                            В нашем Интернет-магазине Вы найдете качественные шины и диски от уже знакомых Вам брендов.
-                        </p>
-                        <h2 style="font-size: 1em;">Вы легко можете подобрать себе нужную шину или диск по параметрам.</h2>
-                        <p>Также в автоцентре "Каретный двор" есть шиномонтаж на который Вы можете записаться по телефону +7 (4722)77-00-33.</p>
+                        {!! $textBottom->text !!}
                     </div>
                 </div>
             </div>
+        <div class="col-md-12">
+            <div class="panel silver panel-default">
+                <div class="panel-body">
+                    <a href="{{ route('season_save') }}" class="btn btn-info">Сезонное хранение</a>
+                    <a href="{{ route('repair_wheels') }}" class="btn btn-info">Правка дисков</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

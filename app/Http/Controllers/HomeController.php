@@ -10,6 +10,7 @@ use App\OrderMerges;
 use App\SelByCar;
 use App\Special;
 use App\StatusText;
+use App\Text;
 use App\Tire;
 use App\Traits\CalcPercent;
 use App\Truck;
@@ -75,6 +76,9 @@ class HomeController extends Controller
         //BY CAR
         $vendors = DB::table('sel_by_cars')->select('fvendor')->distinct()->get();
 
+        // Text
+        $textBottom = Text::where('name', 'home_bottom')->first();
+
         if (Auth::check() && !Auth::user()->is_wholesaler) {
             //По какое число действует оптовая цена для розничного покупателя
             $birthday = User::where('id', Auth::user()->id)->first()->birth;
@@ -82,7 +86,7 @@ class HomeController extends Controller
                 Carbon::parse($birthday)->addDays(env('BIRTHDAY_DATE_OPT_PRICE_AVAILABLE'))->format('m') . '.' . now()->year;
         }
 
-        return view('home', compact(['dateOptAvailable', 'tires', 'wheels', 'list', 'tire_brands', 'truck_brands', 'special_brands', 'wheels_brands', 'vendors']));
+        return view('home', compact(['dateOptAvailable', 'tires', 'wheels', 'list', 'tire_brands', 'truck_brands', 'special_brands', 'wheels_brands', 'vendors', 'textBottom']));
     }
 
     /**

@@ -51,6 +51,14 @@
                                 <p> Режим работы: пн-сб 9:00 - 18:00</p>
                             </div>
                         </div>
+                        <div class="ui orange segment">
+                            <h5 class="ui top attached header">
+                                E-mail
+                            </h5>
+                            <div class="ui attached segment">
+                                <p> A770033@yandex.ru</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

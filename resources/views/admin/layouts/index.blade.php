@@ -76,6 +76,12 @@
                         <p>Резерв</p>
                     </a>
                 </li>
+                <li class="{{ request()->route()->getName() == 'texts' ? 'active' : '' }}">
+                    <a href="{{ route('texts') }}">
+                        <i class="ti-text"></i>
+                        <p>Текста</p>
+                    </a>
+                </li>
                 <li class="{{ request()->route()->getName() == 'stats' ? 'active' : '' }}">
                     <a href="{{ route('stats') }}">
                         <i class="ti-bar-chart-alt"></i>
