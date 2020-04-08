@@ -37,4 +37,22 @@ class PageController extends Controller {
 
         return view('pages.repair_wheels', compact('text'));
     }
+
+    public function tires_rassrochka()
+    {
+        Meta::title('Купить шины в рассрочку');
+
+        $text = Text::where('name', 'tires_rassrochka')->first();
+
+        return view('pages.tires_rassrochka', compact('text'));
+    }
+
+    public function trade_in()
+    {
+        Meta::title('Трейд-ин, обмен, выкуп шин');
+
+        $text = Text::where('name', 'trade_in')->first();
+
+        return view('pages.trade_in', compact('text'));
+    }
 }

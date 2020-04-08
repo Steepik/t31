@@ -116,6 +116,8 @@ Route::get('/contact', 'PageController@contact')->name('contact');
 Route::get('/delivery', 'PageController@delivery')->name('delivery');
 Route::get('/sezonnoe-hranenie', 'PageController@season_save')->name('season_save');
 Route::get('/pravka-diskov', 'PageController@repair_wheels')->name('repair_wheels');
+Route::get('/tires-rassrochka', 'PageController@tires_rassrochka')->name('tires_rassrochka');
+Route::get('/trade-in', 'PageController@trade_in')->name('trade_in');
 
 // *** YML FOR YANDEX MARKET ***//
 Route::get('yandex-price-list', 'YMLController@index');

@@ -416,6 +416,8 @@
                 <div class="panel-body">
                     <a href="{{ route('season_save') }}" class="btn btn-info">Сезонное хранение</a>
                     <a href="{{ route('repair_wheels') }}" class="btn btn-info">Правка дисков</a>
+                    <a href="{{ route('tires_rassrochka') }}" class="btn btn-info">Купить шины в рассрочку</a>
+                    <a href="{{ route('trade_in') }}" class="btn btn-info">Трейд-ин, обмен, выкуп шин</a>
                 </div>
             </div>
         </div>
