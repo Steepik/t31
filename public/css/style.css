@@ -1,3 +1,11 @@
+.pages-text {
+    font-size: 20px;
+    background-color: #6b9dbb;
+    border-color: #538db0;
+}
+.pages-text:hover {
+    text-decoration: underline;
+}
 .ui.steps .step.active .title {
     color: #717179 !important;
 }
@@ -874,6 +882,9 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     }
 }
 @media (max-width: 768px) {
+    .pages-text {
+        margin-bottom: 1rem;
+    }
     .panel {
         margin-top:20px;
     }

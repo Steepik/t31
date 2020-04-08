@@ -304,6 +304,16 @@
                 </div>
             </div>
         </div>
+            <div class="col-md-12">
+                <div class="panel silver panel-default text-center">
+                    <div class="panel-body">
+                        <a href="{{ route('season_save') }}" class="btn btn-info pages-text">Сезонное хранение</a>
+                        <a href="{{ route('repair_wheels') }}" class="btn btn-info pages-text">Правка дисков</a>
+                        <a href="{{ route('tires_rassrochka') }}" class="btn btn-info pages-text">Купить шины в рассрочку</a>
+                        <a href="{{ route('trade_in') }}" class="btn btn-info pages-text">Трейд-ин, обмен, выкуп шин</a>
+                    </div>
+                </div>
+            </div>
         <div class="col-md-12">
             <div class="panel silver panel-default">
                 <div class="panel-body">
@@ -411,16 +421,6 @@
                     </div>
                 </div>
             </div>
-        <div class="col-md-12">
-            <div class="panel silver panel-default">
-                <div class="panel-body">
-                    <a href="{{ route('season_save') }}" class="btn btn-info">Сезонное хранение</a>
-                    <a href="{{ route('repair_wheels') }}" class="btn btn-info">Правка дисков</a>
-                    <a href="{{ route('tires_rassrochka') }}" class="btn btn-info">Купить шины в рассрочку</a>
-                    <a href="{{ route('trade_in') }}" class="btn btn-info">Трейд-ин, обмен, выкуп шин</a>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 @endsection
