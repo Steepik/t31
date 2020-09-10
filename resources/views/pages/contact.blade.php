@@ -8,7 +8,7 @@
                     <div class="panel-heading">Схема проезда</div>
 
                     <div class="panel-body">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2531.6347790386085!2d36.5364347463342!3d50.61532365032454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41266acc2872bb67%3A0x5e3c292d129a5911!2z0YPQuy4g0KfQuNGH0LXRgNC40L3QsCwgMtC1LCDQkdC10LvQs9C-0YDQvtC0LCDQkdC10LvQs9C-0YDQvtC00YHQutCw0Y8g0L7QsdC7LiwgMzA4MDE1!5e0!3m2!1sru!2sru!4v1554741928422!5m2!1sru!2sru" height="450" frameborder="0" style="border:0; width: 100%;" allowfullscreen></iframe>
+                        <iframe src="https://www.google.com/maps/d/embed?mid=195l6GW0sYZklpArps8zXTTVrpRLD4WY-" width="100%" style="border: 0" height="450"></iframe>
                     </div>
                 </div>
             </div>
@@ -21,10 +21,24 @@
                     <div class="panel-body">
                         <div class="ui orange segment">
                             <h5 class="ui top attached header">
-                                Адрес
+                                Адрес первого магазина
                             </h5>
                             <div class="ui attached segment">
                                 <p> г. Белгород ул. Чичерина 2Е</p>
+                            </div>
+                            <div class="ui attached segment">
+                                <p> тел. +7 (4722) 77-00-33</p>
+                            </div>
+                        </div>
+                        <div class="ui orange segment">
+                            <h5 class="ui top attached header">
+                                Адрес второго магазина
+                            </h5>
+                            <div class="ui attached segment">
+                                <p> г. Белгород, ул. Красноармейская, 27</p>
+                            </div>
+                            <div class="ui attached segment">
+                                <p> тел. +7 (4722) 77-09-33</p>
                             </div>
                         </div>
                         <div class="ui orange segment">
@@ -44,9 +58,6 @@
                             </div>
                         </div>
                         <div class="ui orange segment">
-                            <h5 class="ui top attached header">
-                                Тел. станция технического обслуживания: +7(4722) 370-376
-                            </h5>
                             <div class="ui attached segment">
                                 <p> Режим работы: пн-сб 9:00 - 18:00</p>
                             </div>
