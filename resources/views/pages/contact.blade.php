@@ -29,6 +29,11 @@
                             <div class="ui attached segment">
                                 <p> тел. +7 (4722) 77-00-33</p>
                             </div>
+                            <div class="ui attached segment">
+                            <p>
+                                Тел. 3D развал-схождение: +7 (4722) 370-370
+                            </p>
+                            </div>
                         </div>
                         <div class="ui orange segment">
                             <h5 class="ui top attached header">
@@ -49,27 +54,6 @@
                                 <p> Режим работы: пн-вс 9:00 - 20:00</p>
                             </div>
                         </div>
-                        <div class="ui orange segment">
-                            <h5 class="ui top attached header">
-                                Тел. 3D развал-схождение: +7 (4722) 370-370
-                            </h5>
-                            <div class="ui attached segment">
-                                <p> режим работы: вт-сб 9:00 - 18:00</p>
-                            </div>
-                        </div>
-                        <div class="ui orange segment">
-                            <div class="ui attached segment">
-                                <p> Режим работы: пн-сб 9:00 - 18:00</p>
-                            </div>
-                        </div>
-                        <div class="ui orange segment">
-                            <h5 class="ui top attached header">
-                                E-mail
-                            </h5>
-                            <div class="ui attached segment">
-                                <p> A770033@yandex.ru</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -84,6 +68,14 @@
                             </h5>
                             <div class="ui attached segment">
                                 <p> ИП Маюк Владимир Николаевич</p>
+                            </div>
+                        </div>
+                        <div class="ui orange segment">
+                            <h5 class="ui top attached header">
+                                E-mail
+                            </h5>
+                            <div class="ui attached segment">
+                                <p> mayuk@yandex.ru</p>
                             </div>
                         </div>
                         <div class="ui orange segment">
