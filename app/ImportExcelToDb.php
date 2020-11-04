@@ -214,6 +214,11 @@ class ImportExcelToDb
         $wheels->create($data);
     }
 
+    /**
+     * Remember quantity for another shops except which we're updating
+     *
+     * @param $street
+     */
     private function initCurrentQuantityForStreets($street)
     {
         if ($street === self::RED_ARMY_STREET) {
@@ -227,6 +232,11 @@ class ImportExcelToDb
         }
     }
 
+    /**
+     * Set quantity for another shops except which we're updating
+     *
+     * @param $street
+     */
     private function setCurrentQuantityForStreets($street)
     {
         if ($street === self::RED_ARMY_STREET) {

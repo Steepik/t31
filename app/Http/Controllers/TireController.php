@@ -138,7 +138,10 @@ class TireController extends Controller
                     $query->where('user_id', '=', $user->id)->whereIn('brand_id', $user->brandAccess()->pluck('brand_id')->all());
                 })
                     ->where($filter)
-                    ->where('quantity', '>', 0)
+                    ->where(function ($q) {
+                        $q->where('quantity', '>', 0)
+                            ->orWhere('quantity_b', '>', 0);
+                    })
                     ->orderBy($orderBy['field'], $orderBy['sort'])
                     ->paginate(999999);
             } else {
@@ -147,12 +150,18 @@ class TireController extends Controller
                        $query->where('user_id', '=', $user->id)->whereIn('brand_id', $user->brandAccess()->pluck('brand_id')->all());
                    })
                        ->where($filter)
-                       ->where('quantity', '>', 0)
+                       ->where(function ($q) {
+                           $q->where('quantity', '>', 0)
+                               ->orWhere('quantity_b', '>', 0);
+                       })
                        ->orderBy($orderBy['field'], $orderBy['sort'])
                        ->paginate(10);
                } else {
                    $data = $tire->where($filter)
-                       ->where('quantity', '>', 0)
+                       ->where(function ($q) {
+                           $q->where('quantity', '>', 0)
+                               ->orWhere('quantity_b', '>', 0);
+                       })
                        ->orderBy($orderBy['field'], $orderBy['sort'])
                        ->paginate(10);
                }
