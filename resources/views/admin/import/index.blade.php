@@ -13,6 +13,17 @@
                     <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
                         <input type="file" name="uploadfile" class="inputfile"/>
                         <button type="submit" class="btn btn-info btn-fill btn-wd sbmt">Импорт</button>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4>Импорт для улицы</h4>
+                                <select class="form-control" name="street">
+                                    <option value="">Выберите улицу</option>
+                                    <option value="{{ \App\ImportExcelToDb::RED_ARMY_STREET }}">улица Красноармейская</option>
+                                    <option value="{{ \App\ImportExcelToDb::CHECHERINA_STREET }}">улица Чечерина</option>
+                                </select>
+                            </div>
+                        </div>
                         @method('POST')
                         @csrf
                     </form><br/>

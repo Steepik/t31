@@ -203,7 +203,8 @@
                                     </th>
                                     @endif
                                     @endwholesaler
-                                    <th>Остаток</th>
+                                    <th>Остаток (ул. Красноармейская, 27)</th>
+                                    <th>Остаток (ул. Чечерина, 2Е)</th>
                                     <th>Действия</th>
                                 </tr></thead>
                                 <tbody>
@@ -252,6 +253,13 @@
                                             <b> > 8 </b>
                                         @else
                                             <b>{{ $tire->quantity }}</b>
+                                        @endif
+                                    </td>
+                                    <td class="center aligned" style="font-style: italic;">
+                                        @if($tire->quantity_b > 8)
+                                            <b> > 8 </b>
+                                        @else
+                                            <b>{{ $tire->quantity_b }}</b>
                                         @endif
                                     </td>
                                     <td class="center aligned">

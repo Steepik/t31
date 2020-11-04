@@ -6,6 +6,7 @@ use App\BrandPercent;
 use App\Cart;
 use App\Events\PusherNotify;
 use App\HistoryOrders;
+use App\ImportExcelToDb;
 use App\Mail\CartNotify;
 use App\Order;
 use App\User;
@@ -53,7 +54,7 @@ class CartController extends Controller
             $product = Cart::getInstanceProductType($request->type);
             $p_info = $product->where('tcae', $request->product_id)->first();
             $p_price = (Auth::check() && User::isAvailableToShowOptPriceForRoz()) ? $p_info['price_opt'] : $p_info['price_roz'];
-            $p_quantity = $p_info['quantity'];
+            $p_quantity = $p_info['quantity'] + $p_info['quantity_b'];
             $this->total_price = $p_price * $request->count;
             $this->total_count = $request->count;
             $this->products = $request->product_id;
@@ -94,8 +95,15 @@ class CartController extends Controller
         }
     }
 
-    public function makeOrder(Order $order, HistoryOrders $history, Request $request)
+    public function makeOrder(Order $order, HistoryOrders $history, Request $request, $street)
     {
+        $street = (int)$street;
+        
+        if (empty($street)) {
+            return redirect()->back()->with('error', 'Вы не выбрали улицу');
+        }
+
+        $street = (int)$request->street;
         $session = Session();
         $products = !empty($session->get('products')) ? $session->get('products') : array();
         $user = Auth::user();
@@ -139,7 +147,8 @@ class CartController extends Controller
 
         $guest = ( ! $user) ? ['name' => $request->name, 'phone' => $request->phone] : false ;
 
-        Mail::to(env('APP_EMAIL'))->send(new CartNotify($user, $products, $guest));
+        $to = $street === ImportExcelToDb::CHECHERINA_STREET ? env('APP_EMAIL') : env('APP_EMAIL_TWO');
+        Mail::to($to)->send(new CartNotify($user, $products, $guest));
 
         Cart::clearCart();
         //Notify admin about new order
@@ -176,7 +185,8 @@ class CartController extends Controller
         $sid = 0;
         $data = Cart::getInstanceProductType($ptype);
         $pdata = $data->where('tcae', $pid)->first();
-        $diff = ($pdata->quantity - $count); // difference between quantity and count
+        $quantity = $pdata->quantity + $pdata->quantity_b;
+        $diff = ($quantity - $count); // difference between quantity and count
 
         if($pdata->quantity == $count or $diff < 3) {
             $sid = 1; // status: wait for moderation
@@ -221,9 +231,9 @@ class CartController extends Controller
 
         $product = Cart::getInstanceProductType($request->ptype);
         $p_info = $product->where('tcae', $request->product_id)->first();
-        $p_quantity = $p_info['quantity'];
+        $p_quantity = $p_info['quantity'] + $p_info['quantity_b'];
 
-        if($request->count > 0 and $request->count <= $p_quantity) {
+        if($request->count > 0 && $request->count <= $p_quantity) {
             $this->products = collect(Session::get('products'));
             $this->id = $request->id;
             $this->count = $request->count;

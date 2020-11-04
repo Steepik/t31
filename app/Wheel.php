@@ -12,7 +12,7 @@ class Wheel extends Model
     use CalcPercent;
 
     protected $fillable = ['brand_id', 'name', 'image', 'code', 'twidth', 'tdiameter', 'hole_count',
-        'pcd', 'et', 'model', 'et', 'dia', 'tcae', 'type', 'price_opt', 'price_roz', 'quantity',
+        'pcd', 'et', 'model', 'et', 'dia', 'tcae', 'type', 'price_opt', 'price_roz', 'quantity', 'quantity_b'
     ];
 
     public function getPriceOptAttribute($value)

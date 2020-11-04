@@ -74,7 +74,8 @@ button.add-to-cart {
 /* CART */
 .cart-info {
     position: relative;
-    z-index: 1
+    z-index: 1;
+    font-size: 12px !important;
 }
 .cart-products-count {
     position: absolute;

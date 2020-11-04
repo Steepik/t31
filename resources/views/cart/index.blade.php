@@ -22,7 +22,8 @@
                             @wholesaler
                             <th nowrap>Цена (Оптом)</th>
                             @endwholesaler
-                            <th>Остаток</th>
+                            <th>Остаток (ул. Красноармейская, 27)</th>
+                            <th>Остаток (ул. Чечерина, 2Е)</th>
                             <th>Кол-во</th>
                             <th class="text-center">Итого</th>
                             <th>Действия</th>
@@ -61,6 +62,13 @@
                                         > 8
                                     @else
                                         {{ $product[0]->quantity }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($product[0]->quantity_b > 8)
+                                        > 8
+                                    @else
+                                        {{ $product[0]->quantity_b }}
                                     @endif
                                 </td>
                                 <td data-th="Quantity" class="product-count">
@@ -102,17 +110,37 @@
                                 </p>
                             </div>
                         @endif
+                        @if(Session::has('error'))
+                            <div class="ui negative message">
+                                <i class="close icon"></i>
+                                <div class="header">
+                                    Ошибка
+                                </div>
+                                <p>{{ Session::get('error') }}
+                                </p>
+                            </div>
+                        @endif
                         </tbody>
                     </table>
+                    <hr/>
+                    <div class="col-md-12" style="border: 1px solid #e7e7e7; margin-bottom: 1em">
+                        <div style="padding: 1em 1em 1em 0;width: 50%;">
+                        <h4 style="margin-top: 1em;">Выберите пункт выдачи товара</h4>
+                        <select class="form-control" name="street" id="select-street">
+                            <option value="">Выберите улицу</option>
+                            <option value="{{ \App\ImportExcelToDb::RED_ARMY_STREET }}">улица Красноармейская 27</option>
+                            <option value="{{ \App\ImportExcelToDb::CHECHERINA_STREET }}">улица Чечерина 2E</option>
+                        </select>
+                        </div>
+                    </div>
                     <table style="margin-top:1.3em; width:100%">
                         <tr>
                             <td>
                                 <a href="/" class="ui basic secondary button"><i class="cart icon"></i>Продолжить покупки</a>
-
                                 @guest
                                     <a href="#" id="quick_order" class="ui basic positive button"><i class="check icon"></i>Оформить заказ в один клик</a>
                                 @else
-                                    <a href="/make_order" class="ui basic primary button"><i class="payment icon"></i>Оформить заказ</a>
+                                    <a href="/make_order/0" id="make-order" class="ui basic primary button"><i class="payment icon"></i>Оформить заказ</a>
                                 @endguest
                             </td>
                             <td class="text-right"><strong>Итого: {{ $total_price }}p</strong></td>
@@ -131,13 +159,14 @@
                 @endif
             </div>
         </div>
+        @guest
         <div class="ui modal small" style="padding: 0; height: auto;bottom: auto;">
             <i class="close icon" style="top: 0.5px;right:0.5px;color: #000;"></i>
             <div class="header">
                 Быстрое оформление товара
             </div>
             <div class="content">
-                <form id="make-fast-order-form" class="ui form" method="get" action="/make_order?type=quick">
+                <form id="make-fast-order-form" class="ui form" method="get" action="/make_order/0?type=quick">
                     <div class="field">
                         <label>Имя</label>
                         <input type="text" class="input-name-fast-order" name="name" placeholder="Введите имя" required>
@@ -153,5 +182,6 @@
                 </form>
             </div>
         </div>
+            @endguest
     </div>
 @stop

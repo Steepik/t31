@@ -24,7 +24,7 @@ Route::get('/wheels/podbor', 'WheelController@podbor')->name('podbor_wheels');
 Route::post('/add_to_cart', 'CartController@addToCart')->name('addtocart');
 Route::get('/cart', 'CartController@index')->name('cart');
 Route::post('/refresh', 'CartController@refreshProductCount')->name('refresh');
-Route::get('/make_order', 'CartController@makeOrder');
+Route::get('/make_order/{street}', 'CartController@makeOrder');
 Route::post('/prod_action', 'HomeController@actionWithProduct')->name('prod_action');
 Route::get('/order/{id}', 'OrderController@index')->name('order');
 Route::get('/order-m/{id}', 'OrderController@showMergedOrder')->name('order-m');

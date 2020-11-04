@@ -15,7 +15,7 @@ class Tire extends Model
     protected $fillable = [
         'brand_id', 'name', 'image', 'code', 'twidth', 'tprofile', 'tdiameter',
         'load_index', 'speed_index', 'tseason', 'model', 'tcae', 'spike',
-        'model_class', 'price_opt', 'price_roz', 'quantity'
+        'model_class', 'price_opt', 'price_roz', 'quantity', 'quantity_b'
     ];
 
     public function getPriceOptAttribute($value)

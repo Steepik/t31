@@ -11,6 +11,7 @@ use Excel;
 use App\Tire;
 use App\Wheel;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
 
 class ImportController extends Controller
@@ -22,9 +23,13 @@ class ImportController extends Controller
 
     public function uploadExcel(ImportExcelRequest $request)
     {
+        if (empty($request->street)) {
+            return redirect()->back()->withErrors(Lang::get('messages.empty_street'));
+        }
+
         if($request->hasFile('uploadfile')) {
             $import = new ImportExcelToDb();
-            $import->import($request->uploadfile->getPathName());
+            $import->import($request->uploadfile->getPathName(), $request->street);
 
             return redirect()->back()->with('updated', '');
         }

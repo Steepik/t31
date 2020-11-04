@@ -9,8 +9,18 @@ class ImportExcelToDb
 {
     public $once = false;
     public $onceTruck = false;
+    public $street;
+    protected $currentQuantityTire;
+    protected $currentQuantityTruck;
+    protected $currentQuantityWheel;
 
-    public function import($filename) {
+    const RED_ARMY_STREET = 1;
+    const CHECHERINA_STREET = 2;
+
+    public function import($filename, $street) {
+            $this->street = (int)$street;
+            $this->initCurrentQuantityForStreets($this->street);
+
             Excel::selectSheetsByIndex(0)->load($filename, function($reader) {
             $brands = new Brand();
             //$reader->ignoreEmpty();
@@ -106,6 +116,8 @@ class ImportExcelToDb
                 }
             }
         }, 'UTF-8');
+
+        $this->setCurrentQuantityForStreets($this->street);
     }
 
     /**
@@ -135,52 +147,137 @@ class ImportExcelToDb
     private function addDataTire($brand_id, $name, $image, $code, $twidth, $tprofile, $tdiameter, $load_index, $speed_index,
                             $tseason, $model, $tcae, $spike, $model_class, $price_opt, $price_roz, $quantity, $t_type) {
 
+        $data = [
+            'brand_id' => $brand_id,
+            'name' => $name,
+            'image' => $image,
+            'code' => $code,
+            'twidth' => isset($twidth) ? $twidth : 0,
+            'tprofile' => isset($tprofile) ? $tprofile : 0,
+            'tdiameter' => isset($tdiameter) ? $tdiameter : 0,
+            'load_index' => $load_index,
+            'speed_index' => $speed_index,
+            'tseason' => $tseason,
+            'model' => $model,
+            'tcae' => trim($tcae),
+            'spike' => ($spike == 'Да') ? 1 : 0,
+            'model_class' => $model_class,
+            'price_opt' => ($price_opt != 0) ? intval($price_opt) : 0,
+            'price_roz' => ($price_roz != 0) ? intval($price_roz) : 0,
+        ];
+
+        $quantity = $quantity == null ? 0 : $quantity;
+
+        if ($this->street === self::RED_ARMY_STREET) {
+            $data['quantity'] = $quantity;
+        } elseif ($this->street === self::CHECHERINA_STREET) {
+            $data['quantity_b'] = $quantity;
+        }
+
         $t_tire = ($t_type == 'Легковая' ? new Tire() : new Truck());
 
-            $t_tire->create([
-                'brand_id' => $brand_id,
-                'name' => $name,
-                'image' => $image,
-                'code' => $code,
-                'twidth' => isset($twidth) ? $twidth : 0,
-                'tprofile' => isset($tprofile) ? $tprofile : 0,
-                'tdiameter' => isset($tdiameter) ? $tdiameter : 0,
-                'load_index' => $load_index,
-                'speed_index' => $speed_index,
-                'tseason' => $tseason,
-                'model' => $model,
-                'tcae' => trim($tcae),
-                'spike' => ($spike == 'Да') ? 1 : 0,
-                'model_class' => $model_class,
-                'price_opt' => ($price_opt != 0) ? intval($price_opt) : 0,
-                'price_roz' => ($price_roz != 0) ? intval($price_roz) : 0,
-                'quantity' => ($quantity == null) ? 0 : $quantity,
-            ]);
+        $t_tire->create($data);
     }
 
     private function addDataWheel($brand_id, $name, $image, $code, $model, $twidth, $tdiameter, $hole_count, $pcd, $et, $dia, $tcae,
                                     $type, $price_opt, $price_roz, $quantity) {
 
+        $data = [
+            'brand_id' => $brand_id,
+            'name' => $name,
+            'image' => $image,
+            'code' => $code,
+            'twidth' => isset($twidth) ? $twidth : 0,
+            'tdiameter' => isset($tdiameter) ? $tdiameter : 0,
+            'hole_count' => $hole_count,
+            'pcd' => $pcd,
+            'et' => $et,
+            'model' => isset($model) ? $model : '',
+            'et' => $et,
+            'dia' => floatval($dia),
+            'tcae' => trim($tcae),
+            'type' => $type,
+            'price_opt' => ($price_opt != 0) ? $price_opt : 0,
+            'price_roz' => ($price_roz != 0) ? $price_roz : 0,
+        ];
+
+        $quantity = $quantity == null ? 0 : $quantity;
+
+        if ($this->street === self::RED_ARMY_STREET) {
+            $data['quantity'] = $quantity;
+        } elseif ($this->street === self::CHECHERINA_STREET) {
+            $data['quantity_b'] = $quantity;
+        }
+
         $wheels = new Wheel();
 
-            $wheels->create([
-                'brand_id' => $brand_id,
-                'name' => $name,
-                'image' => $image,
-                'code' => $code,
-                'twidth' => isset($twidth) ? $twidth : 0,
-                'tdiameter' => isset($tdiameter) ? $tdiameter : 0,
-                'hole_count' => $hole_count,
-                'pcd' => $pcd,
-                'et' => $et,
-                'model' => isset($model) ? $model : '',
-                'et' => $et,
-                'dia' => floatval($dia),
-                'tcae' => trim($tcae),
-                'type' => $type,
-                'price_opt' => ($price_opt != 0) ? $price_opt : 0,
-                'price_roz' => ($price_roz != 0) ? $price_roz : 0,
-                'quantity' => ($quantity == null) ? 0 : $quantity,
-            ]);
+        $wheels->create($data);
+    }
+
+    private function initCurrentQuantityForStreets($street)
+    {
+        if ($street === self::RED_ARMY_STREET) {
+            $this->currentQuantityTire = Tire::select('quantity_b', 'tcae')->get();
+            $this->currentQuantityTruck = Truck::select('quantity_b', 'tcae')->get();
+            $this->currentQuantityWheel = Wheel::select('quantity_b', 'tcae')->get();
+        } elseif ($street === self::CHECHERINA_STREET) {
+            $this->currentQuantityTire = Tire::select('quantity', 'tcae')->get();
+            $this->currentQuantityTruck = Truck::select('quantity', 'tcae')->get();
+            $this->currentQuantityWheel = Wheel::select('quantity', 'tcae')->get();
+        }
+    }
+
+    private function setCurrentQuantityForStreets($street)
+    {
+        if ($street === self::RED_ARMY_STREET) {
+            if (!empty($this->currentQuantityTire)) {
+                foreach ($this->currentQuantityTire as $tire) {
+                    Tire::where('tcae', $tire->tcae)->update([
+                        'quantity_b' => $tire->quantity_b
+                    ]);
+                }
+            }
+
+            if (!empty($this->currentQuantityTruck)) {
+                foreach ($this->currentQuantityTruck as $truck) {
+                    Truck::where('tcae', $truck->tcae)->update([
+                        'quantity_b' => $truck->quantity_b
+                    ]);
+                }
+            }
+
+            if (!empty($this->currentQuantityWheel)) {
+                foreach ($this->currentQuantityWheel as $wheel) {
+                    Wheel::where('tcae', $wheel->tcae)->update([
+                        'quantity_b' => $wheel->quantity_b
+                    ]);
+                }
+            }
+
+        } elseif ($street === self::CHECHERINA_STREET) {
+            if (!empty($this->currentQuantityTire)) {
+                foreach ($this->currentQuantityTire as $tire) {
+                    Tire::where('tcae', $tire->tcae)->update([
+                        'quantity' => $tire->quantity
+                    ]);
+                }
+            }
+
+            if (!empty($this->currentQuantityTruck)) {
+                foreach ($this->currentQuantityTruck as $truck) {
+                    Truck::where('tcae', $truck->tcae)->update([
+                        'quantity' => $truck->quantity
+                    ]);
+                }
+            }
+
+            if (!empty($this->currentQuantityWheel)) {
+                foreach ($this->currentQuantityWheel as $wheel) {
+                    Wheel::where('tcae', $wheel->tcae)->update([
+                        'quantity' => $wheel->quantity
+                    ]);
+                }
+            }
+        }
     }
 }

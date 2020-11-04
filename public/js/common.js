@@ -146,6 +146,14 @@ $(document).ready(function() {
             min: new Date(1900, 0, 1),
             lazy: false
         });
+
+
+});
+
+$('#select-street').change(function () {
+    let value = parseInt($(this).val());
+    $('#make-order').attr('href', '/make_order/' + value);
+    $('#make-fast-order-form').attr('action', '/make_order/' + value + '?type=quick')
 });
 
 function isNumberKey(evt){
