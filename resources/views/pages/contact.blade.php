@@ -45,6 +45,12 @@
                             <div class="ui attached segment">
                                 <p> тел. +7 (4722) 77-09-33</p>
                             </div>
+                            <div class="ui attached segment">
+                                <p> 3D развал-схождение</p>
+                            </div>
+                            <div class="ui attached segment">
+                                <p> тел. +7 (4722) 370-376</p>
+                            </div>
                         </div>
                         <div class="ui orange segment">
                             <h5 class="ui top attached header">
