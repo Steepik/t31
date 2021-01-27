@@ -23,7 +23,7 @@
                             <th nowrap>Цена (Оптом)</th>
                             @endwholesaler
                             <th>Остаток (ул. Красноармейская, 27)</th>
-                            <th>Остаток (ул. Чечерина, 2Е)</th>
+                            <th>Остаток (ул. Чичерина, 2Е)</th>
                             <th>Кол-во</th>
                             <th class="text-center">Итого</th>
                             <th>Действия</th>
@@ -129,7 +129,7 @@
                         <select class="form-control" name="street" id="select-street">
                             <option value="">Выберите улицу</option>
                             <option value="{{ \App\ImportExcelToDb::RED_ARMY_STREET }}">улица Красноармейская 27</option>
-                            <option value="{{ \App\ImportExcelToDb::CHECHERINA_STREET }}">улица Чечерина 2E</option>
+                            <option value="{{ \App\ImportExcelToDb::CHECHERINA_STREET }}">улица Чичерина 2E</option>
                         </select>
                         </div>
                     </div>

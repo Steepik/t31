@@ -20,7 +20,7 @@
                                 <select class="form-control" name="street">
                                     <option value="">Выберите улицу</option>
                                     <option value="{{ \App\ImportExcelToDb::RED_ARMY_STREET }}">улица Красноармейская</option>
-                                    <option value="{{ \App\ImportExcelToDb::CHECHERINA_STREET }}">улица Чечерина</option>
+                                    <option value="{{ \App\ImportExcelToDb::CHECHERINA_STREET }}">улица Чичерина</option>
                                 </select>
                             </div>
                         </div>
