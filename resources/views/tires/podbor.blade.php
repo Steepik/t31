@@ -245,7 +245,7 @@
                                     <td class="center aligned">{{ $tire->price_roz }}</td>
                                     @wholesaler
                                     @if(!Session::has('hideOpt'))
-                                    <td class="center aligned" style="font-style: italic;"><b>{{ $tire->price_opt }}</b></td>
+                                    <td class="center aligned" style="font-style: italic;"><b>0{{--$tire->price_opt--}}</b></td>
                                     @endif
                                     @endwholesaler
                                     <td class="center aligned" style="font-style: italic;">
