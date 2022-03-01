@@ -48,7 +48,7 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        if($request->ajax()) {
+        if($request->ajax() && $request->price > 0) {
             $session = Session();
             $tire_type = $request->type; // 1 - tires | 2 - trucks | 3 - special | 4 - wheels
             $product = Cart::getInstanceProductType($request->type);
