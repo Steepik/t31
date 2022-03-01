@@ -20,7 +20,7 @@ class Tire extends Model
 
     public function getPriceRozAttribute($value)
     {
-        return '';
+        return 0;
         //return Auth::check() ? $this->calcPercentForOptPrice($value) : $value;
     }
 
