@@ -74,29 +74,29 @@
                                 <table class="table table-hover">
                                     <thead>
                                     <tr><th>Название</th>
-                                        <th nowrap>
-                                            @php
-                                                $url = 'wheels/podbor?'.http_build_query(request()->except(['sortOptPrice', 'sortRozPrice']));
-                                            @endphp
-                                           {{-- @if(isset($appends['sortRozPrice']) and $appends['sortRozPrice'] == 'asc')
-                                                <a title="Сортировать по убыванию" href="{{ url($url.'&sortRozPrice=desc') }}">Цена (Розница) <i class="arrow up icon"></i></a>
-                                            @elseif(isset($appends['sortRozPrice']) and $appends['sortRozPrice'] == 'desc')
-                                                <a title="Сортировать по возрастанию" href="{{ url($url.'&sortRozPrice=asc') }}">Цена (Розница) <i class="arrow down icon"></i></a>
-                                            @elseif(!isset($appends['sortRozPrice']))
-                                                <a title="Сортировать по возрастанию" href="{{ url($url.'&sortRozPrice=asc') }}">Цена (Розница) <i class="arrow down icon"></i></a>
-                                            @endif--}}
-                                        </th>
+{{--                                        <th nowrap>--}}
+{{--                                            @php--}}
+{{--                                                $url = 'wheels/podbor?'.http_build_query(request()->except(['sortOptPrice', 'sortRozPrice']));--}}
+{{--                                            @endphp--}}
+{{--                                            @if(isset($appends['sortRozPrice']) and $appends['sortRozPrice'] == 'asc')--}}
+{{--                                                <a title="Сортировать по убыванию" href="{{ url($url.'&sortRozPrice=desc') }}">Цена (Розница) <i class="arrow up icon"></i></a>--}}
+{{--                                            @elseif(isset($appends['sortRozPrice']) and $appends['sortRozPrice'] == 'desc')--}}
+{{--                                                <a title="Сортировать по возрастанию" href="{{ url($url.'&sortRozPrice=asc') }}">Цена (Розница) <i class="arrow down icon"></i></a>--}}
+{{--                                            @elseif(!isset($appends['sortRozPrice']))--}}
+{{--                                                <a title="Сортировать по возрастанию" href="{{ url($url.'&sortRozPrice=asc') }}">Цена (Розница) <i class="arrow down icon"></i></a>--}}
+{{--                                            @endif--}}
+{{--                                        </th>--}}
                                         @wholesaler
                                         @if(!Session::has('hideOpt'))
-                                        <th nowrap>
-<!--                                            @if(isset($appends['sortOptPrice']) and $appends['sortOptPrice'] == 'asc')
-                                                <a title="Сортировать по убыванию" href="{{ url($url.'&sortOptPrice=desc') }}">Цена (Оптом) <i class="arrow up icon"></i></a>
-                                            @elseif(isset($appends['sortOptPrice']) and $appends['sortOptPrice'] == 'desc')
-                                                <a title="Сортировать по возрастанию" href="{{ url($url.'&sortOptPrice=asc') }}">Цена (Оптом) <i class="arrow down icon"></i></a>
-                                            @elseif(!isset($appends['sortOptPrice']))
-                                                <a title="Сортировать по возрастанию" href="{{ url($url.'&sortOptPrice=asc') }}">Цена (Оптом) <i class="arrow down icon"></i></a>
-                                            @endif-->
-                                        </th>
+{{--                                        <th nowrap>--}}
+{{--                                            @if(isset($appends['sortOptPrice']) and $appends['sortOptPrice'] == 'asc')--}}
+{{--                                                <a title="Сортировать по убыванию" href="{{ url($url.'&sortOptPrice=desc') }}">Цена (Оптом) <i class="arrow up icon"></i></a>--}}
+{{--                                            @elseif(isset($appends['sortOptPrice']) and $appends['sortOptPrice'] == 'desc')--}}
+{{--                                                <a title="Сортировать по возрастанию" href="{{ url($url.'&sortOptPrice=asc') }}">Цена (Оптом) <i class="arrow down icon"></i></a>--}}
+{{--                                            @elseif(!isset($appends['sortOptPrice']))--}}
+{{--                                                <a title="Сортировать по возрастанию" href="{{ url($url.'&sortOptPrice=asc') }}">Цена (Оптом) <i class="arrow down icon"></i></a>--}}
+{{--                                            @endif--}}
+{{--                                        </th>--}}
                                         @endif
                                         @endwholesaler
                                         <th>Остаток (ул. Красноармейская, 27)</th>
