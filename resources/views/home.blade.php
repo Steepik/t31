@@ -345,11 +345,11 @@
                             <div class="best-name">
                                 <ul>
                                     <li>{{ \Illuminate\Support\Str::limit($tire->name, 30) }}</li>
-                                    @wholesaler
-                                    <li class="best-price">{{ number_format($tire->price_opt, 0, '.', ' ') }} ₽</li>
-                                    @else
-                                    <li class="best-price">{{ number_format($tire->price_roz, 0, '.', ' ') }} ₽</li>
-                                    @endwholesaler
+{{--                                    @wholesaler--}}
+{{--                                    <li class="best-price">{{ number_format($tire->price_opt, 0, '.', ' ') }} ₽</li>--}}
+{{--                                    @else--}}
+{{--                                    <li class="best-price">{{ number_format($tire->price_roz, 0, '.', ' ') }} ₽</li>--}}
+{{--                                    @endwholesaler--}}
                                     <li class="text-muted">Остаток: {{ $tire->quantity > 8 ? '>8' : $tire->quantity }}</li>
                                         <li>
                                             <form onsubmit="return false;" method="post" action="{{ route('addtocart') }}" class="form-add-to-cart main">
