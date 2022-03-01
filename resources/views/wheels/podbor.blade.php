@@ -122,10 +122,10 @@
                                                         </div>
                                                     </div>
                                                 </h4></td>
-                                            <td>{{ $wheel->price_roz }}</td>
+{{--                                            <td>{{ $wheel->price_roz }}</td>--}}
                                             @wholesaler
                                             @if(!Session::has('hideOpt'))
-                                            <td style="font-style: italic;"><b>{{ $wheel->price_opt }}</b></td>
+{{--                                            <td style="font-style: italic;"><b>{{ $wheel->price_opt }}</b></td>--}}
                                             @endif
                                             @endwholesaler
                                             <td style="font-style: italic;">
