@@ -11,11 +11,11 @@
                             <img id="single-image" src="/images/{{ $wheel->image }}.jpg">
                             <ul>
                                 <li>Наименование: {{ $wheel->name }}</li>
-                                @wholesaler
-                                    <li>Цена: {{ $wheel->price_opt }} р.</li>
-                                @else
-                                    <li>Цена: {{ $wheel->price_roz }} р.</li>
-                                @endwholesaler
+{{--                                @wholesaler--}}
+{{--                                    <li>Цена: {{ $wheel->price_opt }} р.</li>--}}
+{{--                                @else--}}
+{{--                                    <li>Цена: {{ $wheel->price_roz }} р.</li>--}}
+{{--                                @endwholesaler--}}
                                 <li>Кол-во: {{ $wheel->quantity > 8 ? '> 8' : $wheel->quantity }} шт.</li>
                                 <li>Тип: {{ $wheel->type }}</li>
                                 <li>Бренд: {{ $wheel->brand->name }}</li>

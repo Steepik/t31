@@ -27,11 +27,11 @@
                             </div>
                             <ul>
                                 <li>Наименование: {{ $tire->name }}</li>
-                                @wholesaler
-                                    <li>Цена: {{ $tire->price_opt }} р.</li>
-                                @else
-                                    <li>Цена: {{ $tire->price_roz }} р.</li>
-                                @endwholesaler
+{{--                                @wholesaler--}}
+{{--                                    <li>Цена: {{ $tire->price_opt }} р.</li>--}}
+{{--                                @else--}}
+{{--                                    <li>Цена: {{ $tire->price_roz }} р.</li>--}}
+{{--                                @endwholesaler--}}
 
                                 <li>Кол-во: {{ $tire->quantity > 8 ? '> 8' : $tire->quantity }} шт.</li>
                                 <li>Сезонность: {{ $tire->tseason }}</li>
