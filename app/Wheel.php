@@ -15,9 +15,16 @@ class Wheel extends Model
         'pcd', 'et', 'model', 'et', 'dia', 'tcae', 'type', 'price_opt', 'price_roz', 'quantity', 'quantity_b'
     ];
 
+    public function getPriceRozAttribute($value)
+    {
+        return '';
+        //return Auth::check() ? $this->calcPercentForOptPrice($value) : $value;
+    }
+
     public function getPriceOptAttribute($value)
     {
-        return Auth::check() ? $this->calcPercentForOptPrice($value) : $value;
+        return '';
+        //return Auth::check() ? $this->calcPercentForOptPrice($value) : $value;
     }
 
     public function brand() {

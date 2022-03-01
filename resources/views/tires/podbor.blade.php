@@ -178,29 +178,29 @@
                             <table class="table table-hover">
                                 <thead class="center aligned">
                                 <tr><th >Название</th>
-                                    <th nowrap>
-                                        @php
-                                            $url = 'tires/podbor?'.http_build_query(request()->except(['sortOptPrice', 'sortRozPrice']));
-                                        @endphp
-                                        @if(isset($appends['sortRozPrice']) and $appends['sortRozPrice'] == 'asc')
-                                            <a title="Сортировать по убыванию" href="{{ url($url.'&sortRozPrice=desc') }}">Цена (Розница) <i class="arrow up icon"></i></a>
-                                        @elseif(isset($appends['sortRozPrice']) and $appends['sortRozPrice'] == 'desc')
-                                            <a title="Сортировать по возрастанию" href="{{ url($url.'&sortRozPrice=asc') }}">Цена (Розница) <i class="arrow down icon"></i></a>
-                                        @elseif(!isset($appends['sortRozPrice']))
-                                            <a title="Сортировать по возрастанию" href="{{ url($url.'&sortRozPrice=asc') }}">Цена (Розница) <i class="arrow down icon"></i></a>
-                                        @endif
-                                    </th>
+{{--                                    <th nowrap>--}}
+{{--                                        @php--}}
+{{--                                            $url = 'tires/podbor?'.http_build_query(request()->except(['sortOptPrice', 'sortRozPrice']));--}}
+{{--                                        @endphp--}}
+{{--                                       @if(isset($appends['sortRozPrice']) and $appends['sortRozPrice'] == 'asc')--}}
+{{--                                            <a title="Сортировать по убыванию" href="{{ url($url.'&sortRozPrice=desc') }}">Цена (Розница) <i class="arrow up icon"></i></a>--}}
+{{--                                        @elseif(isset($appends['sortRozPrice']) and $appends['sortRozPrice'] == 'desc')--}}
+{{--                                            <a title="Сортировать по возрастанию" href="{{ url($url.'&sortRozPrice=asc') }}">Цена (Розница) <i class="arrow down icon"></i></a>--}}
+{{--                                        @elseif(!isset($appends['sortRozPrice']))--}}
+{{--                                            <a title="Сортировать по возрастанию" href="{{ url($url.'&sortRozPrice=asc') }}">Цена (Розница) <i class="arrow down icon"></i></a>--}}
+{{--                                        @endif--}}
+{{--                                    </th>--}}
                                     @wholesaler
                                     @if(!Session::has('hideOpt'))
-                                    <th nowrap>
-                                        @if(isset($appends['sortOptPrice']) and $appends['sortOptPrice'] == 'asc')
-                                            <a title="Сортировать по убыванию" href="{{ url($url.'&sortOptPrice=desc') }}">Цена (Оптом) <i class="arrow up icon"></i></a>
-                                        @elseif(isset($appends['sortOptPrice']) and $appends['sortOptPrice'] == 'desc')
-                                            <a title="Сортировать по возрастанию" href="{{ url($url.'&sortOptPrice=asc') }}">Цена (Оптом) <i class="arrow down icon"></i></a>
-                                        @elseif(!isset($appends['sortOptPrice']))
-                                            <a title="Сортировать по возрастанию" href="{{ url($url.'&sortOptPrice=asc') }}">Цена (Оптом) <i class="arrow down icon"></i></a>
-                                        @endif
-                                    </th>
+{{--                                    <th nowrap>--}}
+{{--                                        @if(isset($appends['sortOptPrice']) and $appends['sortOptPrice'] == 'asc')--}}
+{{--                                            <a title="Сортировать по убыванию" href="{{ url($url.'&sortOptPrice=desc') }}">Цена (Оптом) <i class="arrow up icon"></i></a>--}}
+{{--                                        @elseif(isset($appends['sortOptPrice']) and $appends['sortOptPrice'] == 'desc')--}}
+{{--                                            <a title="Сортировать по возрастанию" href="{{ url($url.'&sortOptPrice=asc') }}">Цена (Оптом) <i class="arrow down icon"></i></a>--}}
+{{--                                        @elseif(!isset($appends['sortOptPrice']))--}}
+{{--                                            <a title="Сортировать по возрастанию" href="{{ url($url.'&sortOptPrice=asc') }}">Цена (Оптом) <i class="arrow down icon"></i></a>--}}
+{{--                                        @endif--}}
+{{--                                    </th>--}}
                                     @endif
                                     @endwholesaler
                                     <th>Остаток (ул. Красноармейская, 27)</th>
@@ -215,16 +215,16 @@
                                         <h4 class="ui image header">
                                             <div class="image-season">
                                                 @if($tire->tseason == 'Зимняя')
-                                                    <img src="https://torgshina.com/image/icons/winter.png" />
+                                                    <img src="/img/winter.png" />
                                                 @endif
                                                 @if($tire->tseason == 'Летняя')
-                                                    <img src="https://torgshina.com/image/icons/sun.png" />
+                                                    <img src="/img/sun.png" />
                                                 @endif
                                                 @if($tire->tseason == 'Всесезонная')
-                                                    <img src="https://torgshina.com/image/icons/winsun.png" alt="всесезонные шины"/><br/>
+                                                    <img src="/img/winsun.png" alt="всесезонные шины"/><br/>
                                                 @endif
                                                 @if($tire->spike)
-                                                    <img src="https://torgshina.com/image/icons/ship.png" />
+                                                    <img src="/img/ship.png" />
                                                 @endif
                                             </div>
                                             <img src="{{ asset('images/' . $tire->image) }}.jpg" alt="{{ $tire->name }}" class="light ui large rounded image" />
@@ -242,10 +242,10 @@
                                                 </div>
                                             </div>
                                         </h4></td>
-                                    <td class="center aligned">{{ $tire->price_roz }}</td>
+{{--                                    <td class="center aligned">{{ $tire->price_roz }}</td>--}}
                                     @wholesaler
                                     @if(!Session::has('hideOpt'))
-                                    <td class="center aligned" style="font-style: italic;"><b>0{{--$tire->price_opt--}}</b></td>
+                                   {{-- <td class="center aligned" style="font-style: italic;"><b>$tire->price_opt</b></td>--}}
                                     @endif
                                     @endwholesaler
                                     <td class="center aligned" style="font-style: italic;">
