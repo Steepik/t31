@@ -48,7 +48,7 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        if($request->ajax() && $request->price > 0) {
+        if($request->ajax()) {
             $session = Session();
             $tire_type = $request->type; // 1 - tires | 2 - trucks | 3 - special | 4 - wheels
             $product = Cart::getInstanceProductType($request->type);
@@ -59,6 +59,10 @@ class CartController extends Controller
             $this->total_count = $request->count;
             $this->products = $request->product_id;
             $count = $request->count;
+
+            if ($p_price <= 0) {
+                return response()->noContent();
+            }
 
             if($request->count <= $p_quantity and $request->count > 0) {
                 //if user added the same product just increase count
