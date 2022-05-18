@@ -18,6 +18,24 @@
                             </ul>
                         </div>
                     </div>
+                    <form action="{{ route('toggle_retail_price') }}" method="post" style="display: flex; justify-content: start; align-items: baseline">
+                        <div class="ui checkbox orders"><input class="checkbox-prod" value="1" name="value" type="checkbox" @if($retailPrice->value) checked @endif>
+                            <label>
+                                Отображать розничную цену
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-success" style="margin-left: 1em">Сохранить</button>
+                        @csrf
+                    </form>
+                    <form action="{{ route('toggle_opt_price') }}" method="post" style="display: flex; justify-content: start; align-items: baseline">
+                        <div class="ui checkbox orders"><input class="checkbox-prod" value="1" name="value" type="checkbox" @if($optPrice->value) checked @endif>
+                            <label>
+                                Отображать оптовую цену
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-success" style="margin-left: 1em">Сохранить</button>
+                        @csrf
+                    </form>
                 </div>
             </div>
         </div>

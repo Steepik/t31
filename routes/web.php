@@ -104,6 +104,8 @@ Route::middleware(['auth', 'is_admin'])->group(function(){
     Route::post('control/settings/percent-brand-store', 'Admin\SettingsController@percentBrandStore')->name('percent-brand-store');
     Route::post('control/settings/getPercentBrandView', 'Admin\SettingsController@getPercentBrandView');
     Route::post('control/settings/deleteFromBrandPercent', 'Admin\SettingsController@deleteFromBrandPercent');
+    Route::post('control/settings/toggle-retail-price', 'Admin\SettingsController@toggleRetailPrice')->name('toggle_retail_price');
+    Route::post('control/settings/toggle-opt-price', 'Admin\SettingsController@toggleOptPrice')->name('toggle_opt_price');
 });
 
 // *** AUTOPITER PRICE-LIST ***//

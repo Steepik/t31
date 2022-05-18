@@ -6,6 +6,7 @@ use App\Brand;
 use App\BrandAccess;
 use App\BrandPercent;
 use App\Http\Controllers\Controller;
+use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,10 @@ class SettingsController extends Controller
 {
     public function index()
     {
-        return view('admin.settings.index');
+        $retailPrice = Setting::where('name', 'view_retail_price')->first();
+        $optPrice = Setting::where('name', 'view_opt_price')->first();
+
+        return view('admin.settings.index', compact('retailPrice', 'optPrice'));
     }
 
     public function pageBrandAccess(Request $request, User $user)
@@ -118,5 +122,23 @@ class SettingsController extends Controller
                 ->where('brand_id', $request->brand_id)
                 ->delete();
         }
+    }
+
+    public function  toggleRetailPrice(Request $request)
+    {
+        Setting::where('name', 'view_retail_price')->update([
+            'value' => $request->filled('value')
+        ]);
+
+        return back();
+    }
+
+    public function  toggleOptPrice(Request $request)
+    {
+        Setting::where('name', 'view_opt_price')->update([
+            'value' => $request->filled('value')
+        ]);
+
+        return back();
     }
 }
