@@ -112,14 +112,14 @@
                                         <i class="cart icon"></i> Корзина
                                     </div>
                                     <span class="ui basic silver left pointing label cart-total-price">
-                                        <span id="cart_total_price">
+                                        {{--<span id="cart_total_price">
                                         @if(Session::has('total_price'))
                                             {{ Session::get('total_price') }}
                                         @else
                                             0
                                         @endif
                                         </span>
-                                        p
+                                        p--}}
                                     </span>
                                 </div>
                                 </a>

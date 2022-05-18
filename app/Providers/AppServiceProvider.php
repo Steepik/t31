@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\GlobalNotify;
 use App\NotifyUsers;
+use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,18 @@ class AppServiceProvider extends ServiceProvider
                 return Auth::user()->is_wholesaler || User::isAvailableToShowOptPriceForRoz();
 
             return false;
+        });
+
+        Blade::if('view_retail_price', function () {
+            $setting = Setting::where('name', 'view_retail_price')->first();
+
+            return ! empty($setting->value) ? $setting->value : false;
+        });
+
+        Blade::if('view_opt_price', function () {
+            $setting = Setting::where('name', 'view_opt_price')->first();
+
+            return ! empty($setting->value) ? $setting->value : false;
         });
     }
 

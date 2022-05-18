@@ -18,9 +18,9 @@
                         <thead>
                         <tr>
                             <th>Товар</th>
-                            <th nowrap>Цена (Розница)</th>
+                            {{--<th nowrap>Цена (Розница)</th>--}}
                             @wholesaler
-                            <th nowrap>Цена (Оптом)</th>
+                           {{-- <th nowrap>Цена (Оптом)</th>--}}
                             @endwholesaler
                             <th>Остаток (ул. Красноармейская, 27)</th>
                             <th>Остаток (ул. Чичерина, 2Е)</th>
@@ -53,9 +53,9 @@
                                     </div>
                                     <h4 class="cart-product-name">{{ $product[0]->name }}</h4>
                                 </td>
-                                <td>{{ $product[0]->price_roz }}p</td>
+                               {{-- <td>{{ $product[0]->price_roz }}p</td>--}}
                                 @wholesaler
-                                <td>{{ $product[0]->price_opt }}p</td>
+                               {{-- <td>{{ $product[0]->price_opt }}p</td>--}}
                                 @endwholesaler
                                 <td>
                                     @if($product[0]->quantity > 8)

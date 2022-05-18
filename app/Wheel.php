@@ -17,14 +17,12 @@ class Wheel extends Model
 
     public function getPriceRozAttribute($value)
     {
-        return 0;
-        //return Auth::check() ? $this->calcPercentForOptPrice($value) : $value;
+        return Auth::check() ? $this->calcPercentForOptPrice($value) : $value;
     }
 
     public function getPriceOptAttribute($value)
     {
-        return 0;
-        //return Auth::check() ? $this->calcPercentForOptPrice($value) : $value;
+        return Auth::check() ? $this->calcPercentForOptPrice($value) : $value;
     }
 
     public function brand() {
